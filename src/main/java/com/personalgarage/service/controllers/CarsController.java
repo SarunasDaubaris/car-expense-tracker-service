@@ -40,7 +40,7 @@ public class CarsController {
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.PUT,
-            consumes = "application/json")
+            consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO update(@RequestBody CarsDTO carsDTO) {
         return carsService.update(carsDTO);
