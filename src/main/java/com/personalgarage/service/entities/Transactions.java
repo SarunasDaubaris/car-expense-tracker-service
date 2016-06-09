@@ -13,6 +13,7 @@ public final class Transactions {
     private String transactionsTypes;
     private Long timestamp;
     private BigDecimal amount;
+    private String description;
 
     public Transactions() {}
 
@@ -46,5 +47,13 @@ public final class Transactions {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
