@@ -8,9 +8,11 @@ public final class Cars {
 
     @Id
     private String id;
+    private String owner;
     private String make;
     private String model;
     private Integer year;
+    private String fuelTypes;
     private String licencePlate;
 
     public Cars() {}
@@ -21,6 +23,14 @@ public final class Cars {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getMake() {
@@ -45,6 +55,14 @@ public final class Cars {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public String getFuelTypes() {
+        return fuelTypes;
+    }
+
+    public void setFuelTypes(String fuelTypes) {
+        this.fuelTypes = fuelTypes;
     }
 
     public String getLicencePlate() {
