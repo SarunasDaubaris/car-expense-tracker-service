@@ -1,16 +1,11 @@
-package com.personalgarage.service.entities;
+package com.personalgarage.service.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public final class FuelTypesDTO {
 
-@Document(collection = "usersTypes")
-public final class UsersTypes {
-
-    @Id
     private String id;
     private String title;
 
-    public UsersTypes() {}
+    public FuelTypesDTO() {}
 
     public String getId() {
         return id;
