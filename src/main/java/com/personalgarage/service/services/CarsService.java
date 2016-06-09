@@ -39,8 +39,8 @@ public class CarsService {
         return convertToDto(carsRepository.save(convertToEntity(carsDTO)));
     }
 
-    public void delete(CarsDTO carsDTO) {
-        carsRepository.delete(convertToEntity(carsDTO));
+    public void delete(String id) {
+        carsRepository.delete(id);
     }
 
     private static CarsDTO convertToDto(Cars cars) {

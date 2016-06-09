@@ -46,10 +46,10 @@ public class CarsController {
         return carsService.update(carsDTO);
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.DELETE,
+    @RequestMapping(value = "/cars/{id}", method = RequestMethod.DELETE,
             consumes = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@RequestBody CarsDTO carsDTO) {
-        carsService.delete(carsDTO);
+    public void delete(@PathVariable("id") String id) {
+        carsService.delete(id);
     }
 }
