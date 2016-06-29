@@ -12,7 +12,7 @@ public final class Cars {
     private String make;
     private String model;
     private Integer year;
-    private String fuelTypes;
+    private FuelTypes fuelTypes;
     private String licencePlate;
 
     public Cars() {}
@@ -57,11 +57,11 @@ public final class Cars {
         this.year = year;
     }
 
-    public String getFuelTypes() {
+    public FuelTypes getFuelTypes() {
         return fuelTypes;
     }
 
-    public void setFuelTypes(String fuelTypes) {
+    public void setFuelTypes(FuelTypes fuelTypes) {
         this.fuelTypes = fuelTypes;
     }
 

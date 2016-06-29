@@ -3,13 +3,16 @@ package com.personalgarage.service.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "users")
 public final class Users {
 
     @Id
     private String id;
     private String username;
-    private String usersTypes;
+    private UsersTypes usersTypes;
+    private List<UsersSettings> usersSettings;
 
     public Users() {}
 
@@ -29,11 +32,19 @@ public final class Users {
         this.username = username;
     }
 
-    public String getUsersTypes() {
+    public UsersTypes getUsersTypes() {
         return usersTypes;
     }
 
-    public void setUsersTypes(String usersTypes) {
+    public void setUsersTypes(UsersTypes usersTypes) {
         this.usersTypes = usersTypes;
+    }
+
+    public List<UsersSettings> getUsersSettings() {
+        return usersSettings;
+    }
+
+    public void setUsersSettings(List<UsersSettings> usersSettings) {
+        this.usersSettings = usersSettings;
     }
 }

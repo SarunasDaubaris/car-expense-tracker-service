@@ -2,6 +2,7 @@ package com.personalgarage.service.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
@@ -10,7 +11,7 @@ public final class Transactions {
 
     @Id
     private String id;
-    private String transactionsTypes;
+    private TransactionsTypes transactionsTypes;
     private Long timestamp;
     private BigDecimal amount;
     private String description;
@@ -25,11 +26,11 @@ public final class Transactions {
         this.id = id;
     }
 
-    public String getTransactionsTypes() {
+    public TransactionsTypes getTransactionsTypes() {
         return transactionsTypes;
     }
 
-    public void setTransactionsTypes(String transactionsTypes) {
+    public void setTransactionsTypes(TransactionsTypes transactionsTypes) {
         this.transactionsTypes = transactionsTypes;
     }
 
