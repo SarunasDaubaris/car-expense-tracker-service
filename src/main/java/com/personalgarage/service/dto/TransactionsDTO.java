@@ -1,10 +1,11 @@
 package com.personalgarage.service.dto;
 
+import com.personalgarage.service.base.dto.BaseDTO;
+
 import java.math.BigDecimal;
 
-public final class TransactionsDTO {
+public final class TransactionsDTO extends BaseDTO {
 
-    private String id;
     private String transactionsTypes;
     private String carId;
     private String userId;
@@ -13,14 +14,6 @@ public final class TransactionsDTO {
     private String description;
 
     public TransactionsDTO() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTransactionsTypes() {
         return transactionsTypes;

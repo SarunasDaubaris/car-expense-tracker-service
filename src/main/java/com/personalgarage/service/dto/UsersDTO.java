@@ -1,20 +1,13 @@
 package com.personalgarage.service.dto;
 
-public final class UsersDTO {
+import com.personalgarage.service.base.dto.BaseDTO;
 
-    private String id;
+public final class UsersDTO extends BaseDTO {
+
     private String username;
     private String usersTypes;
 
     public UsersDTO() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

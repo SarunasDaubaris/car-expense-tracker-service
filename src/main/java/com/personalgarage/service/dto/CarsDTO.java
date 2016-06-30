@@ -1,8 +1,9 @@
 package com.personalgarage.service.dto;
 
-public final class CarsDTO {
+import com.personalgarage.service.base.dto.BaseDTO;
 
-    private String id;
+public final class CarsDTO extends BaseDTO {
+
     private String owner;
     private String make;
     private String model;
@@ -11,14 +12,6 @@ public final class CarsDTO {
     private String licencePlate;
 
     public CarsDTO() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getOwner() {
         return owner;
