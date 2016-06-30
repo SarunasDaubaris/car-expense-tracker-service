@@ -6,6 +6,8 @@ public final class TransactionsDTO {
 
     private String id;
     private String transactionsTypes;
+    private String carId;
+    private String userId;
     private Long timestamp;
     private BigDecimal amount;
     private String description;
@@ -26,6 +28,22 @@ public final class TransactionsDTO {
 
     public void setTransactionsTypes(String transactionsTypes) {
         this.transactionsTypes = transactionsTypes;
+    }
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Long getTimestamp() {

@@ -12,6 +12,8 @@ public final class Transactions {
     @Id
     private String id;
     private TransactionsTypes transactionsTypes;
+    private String carId;
+    private String userId;
     private Long timestamp;
     private BigDecimal amount;
     private String description;
@@ -32,6 +34,22 @@ public final class Transactions {
 
     public void setTransactionsTypes(TransactionsTypes transactionsTypes) {
         this.transactionsTypes = transactionsTypes;
+    }
+
+    public String getCarId() {
+        return carId;
+    }
+
+    public void setCarId(String carId) {
+        this.carId = carId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Long getTimestamp() {
