@@ -8,9 +8,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class CarsService extends IDTOBaseService<CarsDTO, Cars> {
 
@@ -21,12 +18,6 @@ public class CarsService extends IDTOBaseService<CarsDTO, Cars> {
     @Autowired
     public CarsService(CarsRepository carsRepository) {
         this.carsRepository = carsRepository;
-    }
-
-    @Override
-    public List<CarsDTO> getAll() {
-        return carsRepository.findAll().stream().map(cars -> convertToDto(cars)).
-                collect(Collectors.toList());
     }
 
     @Override

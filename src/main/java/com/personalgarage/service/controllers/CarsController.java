@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class CarsController {
 
@@ -18,17 +16,10 @@ public class CarsController {
         this.carsService = carsService;
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.GET,
-            produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CarsDTO> getAll() {
-        return carsService.getAll();
-    }
-
     @RequestMapping(value = "/cars/{id}", method = RequestMethod.GET,
             consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CarsDTO getById(@PathVariable("id") String id) {
+    public CarsDTO get(@PathVariable("id") String id) {
         return carsService.get(id);
     }
 

@@ -1,10 +1,6 @@
 package com.personalgarage.service.base;
 
-import java.util.List;
-
-public interface IDTOService<DTO, ENTITY> {
-
-    List<DTO> getAll();
+interface IDTOService<DTO> {
 
     DTO get(String id);
 
