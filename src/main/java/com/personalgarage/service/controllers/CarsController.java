@@ -29,7 +29,7 @@ public class CarsController {
             consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO getById(@PathVariable("id") String id) {
-        return carsService.getById(id);
+        return carsService.get(id);
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.POST,

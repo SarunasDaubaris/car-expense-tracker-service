@@ -1,5 +1,6 @@
 package com.personalgarage.service.services;
 
+import com.personalgarage.service.base.IDTOBaseService;
 import com.personalgarage.service.dto.CarsDTO;
 import com.personalgarage.service.entities.Cars;
 import com.personalgarage.service.repositories.CarsRepository;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CarsService {
+public class CarsService extends IDTOBaseService<CarsDTO, Cars> {
 
     private CarsRepository carsRepository;
 
@@ -22,33 +23,38 @@ public class CarsService {
         this.carsRepository = carsRepository;
     }
 
+    @Override
     public List<CarsDTO> getAll() {
-        return carsRepository.findAll().stream().map(CarsService::convertToDto).
+        return carsRepository.findAll().stream().map(cars -> convertToDto(cars)).
                 collect(Collectors.toList());
     }
 
-    public CarsDTO getById(String id) {
+    @Override
+    public CarsDTO get(String id) {
         return convertToDto(carsRepository.findOne(id));
     }
 
+    @Override
     public CarsDTO insert(CarsDTO carsDTO) {
         return convertToDto(carsRepository.insert(convertToEntity(carsDTO)));
     }
 
+    @Override
     public CarsDTO update(CarsDTO carsDTO) {
         return convertToDto(carsRepository.save(convertToEntity(carsDTO)));
     }
 
+    @Override
     public void delete(String id) {
         carsRepository.delete(id);
     }
 
-    private static CarsDTO convertToDto(Cars cars) {
+    protected CarsDTO convertToDto(Cars cars) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(cars, CarsDTO.class);
     }
 
-    private static Cars convertToEntity(CarsDTO carsDTO) {
+    protected Cars convertToEntity(CarsDTO carsDTO) {
         ModelMapper modelMapper = new ModelMapper();
         return modelMapper.map(carsDTO, Cars.class);
     }
