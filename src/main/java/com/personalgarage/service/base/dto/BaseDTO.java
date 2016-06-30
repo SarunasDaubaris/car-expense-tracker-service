@@ -2,7 +2,7 @@ package com.personalgarage.service.base.dto;
 
 public abstract class BaseDTO implements IDTO {
 
-    protected String id;
+    private String id;
 
     public String getId() {
         return id;
