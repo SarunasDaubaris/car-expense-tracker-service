@@ -1,4 +1,4 @@
-package com.personalgarage.service.base;
+package com.personalgarage.service.base.services;
 
 interface IDTOService<DTO> {
 

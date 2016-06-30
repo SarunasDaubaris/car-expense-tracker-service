@@ -1,6 +1,6 @@
 package com.personalgarage.service.services;
 
-import com.personalgarage.service.base.IDTOBaseService;
+import com.personalgarage.service.base.services.DTOBaseService;
 import com.personalgarage.service.dto.CarsDTO;
 import com.personalgarage.service.entities.Cars;
 import com.personalgarage.service.repositories.CarsRepository;
@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CarsService extends IDTOBaseService<CarsDTO, Cars> {
+public class CarsService extends DTOBaseService<CarsDTO, Cars> {
 
     private CarsRepository carsRepository;
 

@@ -1,13 +1,13 @@
 package com.personalgarage.service.controllers;
 
+import com.personalgarage.service.base.controllers.BaseRestController;
 import com.personalgarage.service.dto.CarsDTO;
 import com.personalgarage.service.services.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-public class CarsController {
+public class CarsController extends BaseRestController {
 
     private CarsService carsService;
 

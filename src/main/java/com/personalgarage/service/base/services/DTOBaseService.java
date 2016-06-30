@@ -1,6 +1,6 @@
-package com.personalgarage.service.base;
+package com.personalgarage.service.base.services;
 
-public abstract class IDTOBaseService<DTO, ENTITY>
+public abstract class DTOBaseService<DTO, ENTITY>
         implements IDTOService<DTO> {
 
     protected abstract DTO convertToDto(ENTITY entity);
