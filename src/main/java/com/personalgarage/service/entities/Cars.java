@@ -1,13 +1,10 @@
 package com.personalgarage.service.entities;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "cars")
 public final class Cars {
 
-    @Id
-    private String id;
     private String owner;
     private String make;
     private String model;
@@ -16,14 +13,6 @@ public final class Cars {
     private String licencePlate;
 
     public Cars() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getOwner() {
         return owner;

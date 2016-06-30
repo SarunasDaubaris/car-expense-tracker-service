@@ -1,24 +1,14 @@
 package com.personalgarage.service.entities;
 
-import org.springframework.data.annotation.Id;
+import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "transactionsTypes")
-public final class TransactionsTypes {
+public final class TransactionsTypes extends BaseEntity {
 
-    @Id
-    private String id;
     private String title;
 
     public TransactionsTypes() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

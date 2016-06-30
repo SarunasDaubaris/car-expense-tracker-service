@@ -1,24 +1,14 @@
 package com.personalgarage.service.entities;
 
-import org.springframework.data.annotation.Id;
+import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usersSettings")
-public final class UsersSettings {
+public final class UsersSettings extends BaseEntity {
 
-    @Id
-    private String id;
     private UsersSettingsTypes usersSettingsTypes;
 
     public UsersSettings() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public UsersSettingsTypes getUsersSettingsTypes() {
         return usersSettingsTypes;

@@ -1,16 +1,13 @@
 package com.personalgarage.service.entities;
 
-import org.springframework.data.annotation.Id;
+import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 
 @Document(collection = "transactions")
-public final class Transactions {
+public final class Transactions extends BaseEntity {
 
-    @Id
-    private String id;
     private TransactionsTypes transactionsTypes;
     private String carId;
     private String userId;
@@ -19,14 +16,6 @@ public final class Transactions {
     private String description;
 
     public Transactions() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public TransactionsTypes getTransactionsTypes() {
         return transactionsTypes;
