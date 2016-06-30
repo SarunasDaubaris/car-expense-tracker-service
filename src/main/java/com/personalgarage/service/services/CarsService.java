@@ -6,9 +6,7 @@ import com.personalgarage.service.entities.Cars;
 import com.personalgarage.service.repositories.CarsRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
 public class CarsService extends DTOBaseService<CarsDTO, Cars> {
 
     private CarsRepository carsRepository;
