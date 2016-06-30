@@ -8,6 +8,7 @@ public final class UsersSettings {
 
     @Id
     private String id;
+    private UsersSettingsTypes usersSettingsTypes;
 
     public UsersSettings() {}
 
@@ -17,5 +18,13 @@ public final class UsersSettings {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public UsersSettingsTypes getUsersSettingsTypes() {
+        return usersSettingsTypes;
+    }
+
+    public void setUsersSettingsTypes(UsersSettingsTypes usersSettingsTypes) {
+        this.usersSettingsTypes = usersSettingsTypes;
     }
 }
