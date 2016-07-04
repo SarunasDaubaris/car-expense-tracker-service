@@ -1,11 +1,15 @@
 package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
+import com.personalgarage.service.entities.UsersSettings;
+
+import java.util.List;
 
 public final class UsersDTO extends BaseDTO {
 
     private String username;
-    private String usersTypes;
+    private UsersTypesDTO usersTypes;
+    private List<UsersSettings> usersSettings;
 
     public UsersDTO() {}
 
@@ -17,11 +21,19 @@ public final class UsersDTO extends BaseDTO {
         this.username = username;
     }
 
-    public String getUsersTypes() {
+    public UsersTypesDTO getUsersTypes() {
         return usersTypes;
     }
 
-    public void setUsersTypes(String usersTypes) {
+    public void setUsersTypes(UsersTypesDTO usersTypes) {
         this.usersTypes = usersTypes;
+    }
+
+    public List<UsersSettings> getUsersSettings() {
+        return usersSettings;
+    }
+
+    public void setUsersSettings(List<UsersSettings> usersSettings) {
+        this.usersSettings = usersSettings;
     }
 }
