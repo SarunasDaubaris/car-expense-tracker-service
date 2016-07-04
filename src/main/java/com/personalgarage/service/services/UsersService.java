@@ -11,6 +11,8 @@ public class UsersService extends DTOBaseService<UsersDTO, Users> {
 
     private UsersRepository usersRepository;
 
+    public UsersService() {}
+
     @Autowired
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;

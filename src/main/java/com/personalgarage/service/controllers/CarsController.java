@@ -11,6 +11,8 @@ public class CarsController extends BaseRestController {
 
     private CarsService carsService;
 
+    public CarsController() {}
+
     @Autowired
     public CarsController(CarsService carsService) {
         this.carsService = carsService;

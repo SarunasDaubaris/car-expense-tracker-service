@@ -11,6 +11,8 @@ public class UsersController extends BaseRestController {
 
     private UsersService usersService;
 
+    public UsersController() {}
+
     @Autowired
     public UsersController(UsersService usersService) {
         this.usersService = usersService;
