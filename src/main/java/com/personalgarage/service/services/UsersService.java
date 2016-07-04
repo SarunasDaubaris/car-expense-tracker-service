@@ -18,21 +18,22 @@ public class UsersService extends DTOBaseService<UsersDTO, Users> {
 
     @Override
     public UsersDTO get(String id) {
-        return null;
+        return convertToDto(usersRepository.findOne(id));
     }
 
     @Override
     public UsersDTO insert(UsersDTO usersDTO) {
-        return null;
+        return convertToDto(usersRepository.insert(convertToEntity(usersDTO)));
     }
 
     @Override
     public UsersDTO update(UsersDTO usersDTO) {
-        return null;
+        return convertToDto(usersRepository.save(convertToEntity(usersDTO)));
     }
 
     @Override
     public void delete(String id) {
+        usersRepository.delete(id);
     }
 
     @Override
