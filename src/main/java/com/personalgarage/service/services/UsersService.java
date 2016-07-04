@@ -3,8 +3,18 @@ package com.personalgarage.service.services;
 import com.personalgarage.service.base.services.DTOBaseService;
 import com.personalgarage.service.dto.UsersDTO;
 import com.personalgarage.service.entities.Users;
+import com.personalgarage.service.repositories.UsersRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UsersService extends DTOBaseService<UsersDTO, Users> {
+
+    private UsersRepository usersRepository;
+
+    @Autowired
+    public UsersService(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
     @Override
     public UsersDTO get(String id) {
@@ -23,16 +33,17 @@ public class UsersService extends DTOBaseService<UsersDTO, Users> {
 
     @Override
     public void delete(String id) {
-
     }
 
     @Override
     protected UsersDTO convertToDto(Users users) {
-        return null;
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(users, UsersDTO.class);
     }
 
     @Override
     protected Users convertToEntity(UsersDTO usersDTO) {
-        return null;
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(usersDTO, Users.class);
     }
 }
