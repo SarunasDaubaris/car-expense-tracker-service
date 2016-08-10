@@ -39,7 +39,8 @@ dependencies {
 			version: '2.7.4');
 	compile(group: 'com.fasterxml.jackson.core', name: 'jackson-annotations',
 			version: '2.7.4');
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	testCompile('org.springframework.boot:spring-boot-starter-test');
+	testCompile('org.mockito:mockito-core:1.10.19');
 }
 
 
