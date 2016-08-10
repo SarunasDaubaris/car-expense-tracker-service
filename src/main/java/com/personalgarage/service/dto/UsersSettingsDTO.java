@@ -2,7 +2,7 @@ package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
 
-public final class UsersSettingsDTO extends BaseDTO {
+public class UsersSettingsDTO extends BaseDTO {
 
     private UsersSettingsTypesDTO usersSettingsTypes;
 

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Document(collection = "users")
-public final class Users {
+public class Users {
 
     private String username;
     private UsersStates usersStates;

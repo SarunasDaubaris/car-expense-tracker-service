@@ -4,7 +4,7 @@ import com.personalgarage.service.base.dto.BaseDTO;
 
 import java.math.BigDecimal;
 
-public final class TransactionsDTO extends BaseDTO {
+public class TransactionsDTO extends BaseDTO {
 
     private String transactionsTypes;
     private String carId;

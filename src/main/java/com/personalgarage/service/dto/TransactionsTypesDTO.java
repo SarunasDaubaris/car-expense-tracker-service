@@ -2,7 +2,7 @@ package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
 
-public final class TransactionsTypesDTO extends BaseDTO {
+public class TransactionsTypesDTO extends BaseDTO {
 
     private String value;
 

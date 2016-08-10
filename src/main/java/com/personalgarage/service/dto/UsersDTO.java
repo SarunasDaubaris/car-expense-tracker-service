@@ -5,7 +5,7 @@ import com.personalgarage.service.entities.UsersSettings;
 
 import java.util.List;
 
-public final class UsersDTO extends BaseDTO {
+public class UsersDTO extends BaseDTO {
 
     private String username;
     private UsersStatesDTO usersStates;

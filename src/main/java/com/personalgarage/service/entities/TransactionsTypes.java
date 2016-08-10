@@ -4,7 +4,7 @@ import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "transactionsTypes")
-public final class TransactionsTypes extends BaseEntity {
+public class TransactionsTypes extends BaseEntity {
 
     private String value;
 

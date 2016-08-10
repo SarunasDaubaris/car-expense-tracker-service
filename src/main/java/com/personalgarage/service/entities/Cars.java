@@ -3,7 +3,7 @@ package com.personalgarage.service.entities;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "cars")
-public final class Cars {
+public class Cars {
 
     private String owner;
     private String make;

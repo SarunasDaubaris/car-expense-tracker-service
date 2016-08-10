@@ -2,7 +2,7 @@ package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
 
-public final class CarsDTO extends BaseDTO {
+public class CarsDTO extends BaseDTO {
 
     private String owner;
     private String make;

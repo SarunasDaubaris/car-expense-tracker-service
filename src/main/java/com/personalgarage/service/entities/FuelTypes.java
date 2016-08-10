@@ -4,7 +4,7 @@ import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "fuelTypes")
-public final class FuelTypes extends BaseEntity {
+public class FuelTypes extends BaseEntity {
 
     private String value;
 

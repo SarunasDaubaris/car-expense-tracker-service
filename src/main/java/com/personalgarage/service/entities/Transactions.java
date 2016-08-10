@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 
 @Document(collection = "transactions")
-public final class Transactions extends BaseEntity {
+public class Transactions extends BaseEntity {
 
     private TransactionsTypes transactionsTypes;
     private String carId;

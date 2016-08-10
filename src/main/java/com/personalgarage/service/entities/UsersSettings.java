@@ -4,7 +4,7 @@ import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usersSettings")
-public final class UsersSettings extends BaseEntity {
+public class UsersSettings extends BaseEntity {
 
     private UsersSettingsTypes usersSettingsTypes;
 
