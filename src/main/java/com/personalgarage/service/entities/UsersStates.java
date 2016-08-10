@@ -3,12 +3,12 @@ package com.personalgarage.service.entities;
 import com.personalgarage.service.base.entities.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "fuelTypes")
-public final class FuelTypes extends BaseEntity {
+@Document(collection = "usersStates")
+public class UsersStates extends BaseEntity {
 
     private String value;
 
-    public FuelTypes() {}
+    public UsersStates() {}
 
     public String getValue() {
         return value;

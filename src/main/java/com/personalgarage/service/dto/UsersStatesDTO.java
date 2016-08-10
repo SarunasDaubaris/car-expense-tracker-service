@@ -2,11 +2,13 @@ package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
 
-public class UsersSettingsTypesDTO extends BaseDTO {
+public class UsersStatesDTO extends BaseDTO {
 
     private String value;
 
-    public UsersSettingsTypesDTO() {}
+    public UsersStatesDTO(String value) {
+        this.value = value;
+    }
 
     public String getValue() {
         return value;

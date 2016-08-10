@@ -8,6 +8,7 @@ import java.util.List;
 public final class UsersDTO extends BaseDTO {
 
     private String username;
+    private UsersStatesDTO usersStates;
     private UsersTypesDTO usersTypes;
     private List<UsersSettings> usersSettings;
 
@@ -19,6 +20,14 @@ public final class UsersDTO extends BaseDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public UsersStatesDTO getUsersStates() {
+        return usersStates;
+    }
+
+    public void setUsersStates(UsersStatesDTO usersStates) {
+        this.usersStates = usersStates;
     }
 
     public UsersTypesDTO getUsersTypes() {

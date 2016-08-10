@@ -8,6 +8,7 @@ import java.util.List;
 public final class Users {
 
     private String username;
+    private UsersStates usersStates;
     private UsersTypes usersTypes;
     private List<UsersSettings> usersSettings;
 
@@ -19,6 +20,14 @@ public final class Users {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public UsersStates getUsersStates() {
+        return usersStates;
+    }
+
+    public void setUsersStates(UsersStates usersStates) {
+        this.usersStates = usersStates;
     }
 
     public UsersTypes getUsersTypes() {

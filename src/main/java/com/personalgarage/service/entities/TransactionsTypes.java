@@ -6,15 +6,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "transactionsTypes")
 public final class TransactionsTypes extends BaseEntity {
 
-    private String title;
+    private String value;
 
     public TransactionsTypes() {}
 
-    public String getTitle() {
-        return title;
+    public String getValue() {
+        return value;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setValue(String value) {
+        this.value = value;
     }
 }

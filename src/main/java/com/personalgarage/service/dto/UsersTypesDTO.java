@@ -4,15 +4,15 @@ import com.personalgarage.service.base.dto.BaseDTO;
 
 public final class UsersTypesDTO extends BaseDTO {
 
-    private String title;
+    private String value;
 
     public UsersTypesDTO() {}
 
-    public String getTitle() {
-        return title;
+    public String getValue() {
+        return value;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setValue(String value) {
+        this.value = value;
     }
 }
