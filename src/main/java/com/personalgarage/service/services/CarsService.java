@@ -1,13 +1,14 @@
 package com.personalgarage.service.services;
 
-import com.personalgarage.service.base.services.DTOBaseService;
+import com.personalgarage.service.base.services.BaseRestService;
 import com.personalgarage.service.dto.CarsDTO;
 import com.personalgarage.service.entities.Cars;
 import com.personalgarage.service.repositories.CarsRepository;
+import com.personalgarage.service.services.interfaces.ICarsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class CarsService extends DTOBaseService<CarsDTO, Cars> {
+public class CarsService extends BaseRestService<CarsDTO, Cars> implements ICarsService<CarsDTO> {
 
     private CarsRepository carsRepository;
 

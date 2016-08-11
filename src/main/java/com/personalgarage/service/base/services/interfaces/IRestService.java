@@ -1,9 +1,9 @@
-package com.personalgarage.service.base.services;
+package com.personalgarage.service.base.services.interfaces;
 
 import org.springframework.stereotype.Service;
 
 @Service
-interface IDTOService<DTO> {
+public interface IRestService<DTO> {
 
     DTO get(String id);
 

@@ -1,20 +1,21 @@
 package com.personalgarage.service.controllers;
 
 import com.personalgarage.service.base.controllers.BaseRestController;
+import com.personalgarage.service.controllers.interfaces.IUsersController;
 import com.personalgarage.service.dto.UsersDTO;
-import com.personalgarage.service.services.UsersService;
+import com.personalgarage.service.services.interfaces.IUsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-public class UsersController extends BaseRestController {
+public class UsersController extends BaseRestController implements IUsersController {
 
-    private UsersService usersService;
+    private IUsersService<UsersDTO> usersService;
 
     public UsersController() {}
 
     @Autowired
-    public UsersController(UsersService usersService) {
+    public UsersController(IUsersService<UsersDTO> usersService) {
         this.usersService = usersService;
     }
 
