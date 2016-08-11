@@ -12,14 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public class CarsController extends BaseRestController implements ICarsController {
 
-    private ICarsService<CarsDTO> carsService;
+    private ICarsService carsService;
 
     public CarsController() {}
 
     @Autowired
-    public CarsController(ICarsService<CarsDTO> carsService) {
+    public CarsController(ICarsService carsService) {
         this.carsService = carsService;
     }
 
@@ -28,6 +30,14 @@ public class CarsController extends BaseRestController implements ICarsControlle
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return carsService.get(id);
+    }
+
+    @Override
+    @RequestMapping(value = "/cars/{ownerId}", method = RequestMethod.GET,
+            consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CarsDTO> getAllByOwner(String ownerId) {
+        return carsService.getAllByOwner(ownerId);
     }
 
     @RequestMapping(value = "/cars", method = RequestMethod.POST,

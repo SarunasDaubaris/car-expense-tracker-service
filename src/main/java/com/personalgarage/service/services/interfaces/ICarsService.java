@@ -1,6 +1,11 @@
 package com.personalgarage.service.services.interfaces;
 
 import com.personalgarage.service.base.services.interfaces.IRestService;
+import com.personalgarage.service.dto.CarsDTO;
 
-public interface ICarsService<DTO> extends IRestService<DTO> {
+import java.util.List;
+
+public interface ICarsService extends IRestService<CarsDTO> {
+
+    List<CarsDTO> getAllByOwner(String ownerId);
 }

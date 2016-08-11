@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 public class UsersController extends BaseRestController implements IUsersController {
 
-    private IUsersService<UsersDTO> usersService;
+    private IUsersService usersService;
 
     public UsersController() {}
 
     @Autowired
-    public UsersController(IUsersService<UsersDTO> usersService) {
+    public UsersController(IUsersService usersService) {
         this.usersService = usersService;
     }
 

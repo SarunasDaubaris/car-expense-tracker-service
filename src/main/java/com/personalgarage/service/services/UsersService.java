@@ -1,16 +1,17 @@
 package com.personalgarage.service.services;
 
 import com.personalgarage.service.base.services.BaseRestService;
+import com.personalgarage.service.components.RestMapper;
 import com.personalgarage.service.dto.UsersDTO;
 import com.personalgarage.service.entities.Users;
 import com.personalgarage.service.repositories.UsersRepository;
 import com.personalgarage.service.services.interfaces.IUsersService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UsersService extends BaseRestService<UsersDTO, Users> implements IUsersService<UsersDTO> {
+public class UsersService extends BaseRestService implements IUsersService {
 
     private UsersRepository usersRepository;
+    private RestMapper<UsersDTO, Users> restMapper = new RestMapper<>();
 
     public UsersService() {}
 
@@ -21,33 +22,21 @@ public class UsersService extends BaseRestService<UsersDTO, Users> implements IU
 
     @Override
     public UsersDTO get(String id) {
-        return convertToDto(usersRepository.findOne(id));
+        return restMapper.convertToDto(usersRepository.findOne(id));
     }
 
     @Override
     public UsersDTO insert(UsersDTO usersDTO) {
-        return convertToDto(usersRepository.insert(convertToEntity(usersDTO)));
+        return restMapper.convertToDto(usersRepository.insert(restMapper.convertToEntity(usersDTO)));
     }
 
     @Override
     public UsersDTO update(UsersDTO usersDTO) {
-        return convertToDto(usersRepository.save(convertToEntity(usersDTO)));
+        return restMapper.convertToDto(usersRepository.save(restMapper.convertToEntity(usersDTO)));
     }
 
     @Override
     public void delete(String id) {
         usersRepository.delete(id);
-    }
-
-    @Override
-    protected UsersDTO convertToDto(Users users) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(users, UsersDTO.class);
-    }
-
-    @Override
-    protected Users convertToEntity(UsersDTO usersDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(usersDTO, Users.class);
     }
 }
