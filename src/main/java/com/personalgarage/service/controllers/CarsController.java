@@ -33,7 +33,7 @@ public class CarsController extends BaseRestController implements ICarsControlle
     }
 
     @Override
-    @RequestMapping(value = "/cars/{ownerId}", method = RequestMethod.GET,
+    @RequestMapping(value = "/cars/users/{ownerId}", method = RequestMethod.GET,
             consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<CarsDTO> getAllByOwner(String ownerId) {
