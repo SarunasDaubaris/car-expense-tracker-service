@@ -14,5 +14,4 @@ public class PersonalGarageServiceApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
 }
