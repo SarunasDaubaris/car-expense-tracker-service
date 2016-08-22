@@ -19,29 +19,25 @@ public class UsersController extends BaseRestController implements IUsersControl
         this.usersService = usersService;
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET,
-            consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/users/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public UsersDTO get(@PathVariable("id") String id) {
         return usersService.get(id);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/users", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UsersDTO insert(@RequestBody UsersDTO usersDTO) {
         return usersService.insert(usersDTO);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.PUT,
-            consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/users", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public UsersDTO update(@RequestBody UsersDTO usersDTO) {
         return usersService.update(usersDTO);
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE,
-            consumes = "application/json")
+    @DeleteMapping(value = "/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         usersService.delete(id);

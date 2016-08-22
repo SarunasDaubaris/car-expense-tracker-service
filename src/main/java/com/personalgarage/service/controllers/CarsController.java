@@ -25,37 +25,32 @@ public class CarsController extends BaseRestController implements ICarsControlle
         this.carsService = carsService;
     }
 
-    @RequestMapping(value = "/cars/{id}", method = RequestMethod.GET,
-            consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/cars/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return carsService.get(id);
     }
 
     @Override
-    @RequestMapping(value = "/cars/users/{ownerId}", method = RequestMethod.GET,
-            consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/cars/users/{ownerId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<CarsDTO> getAllByOwner(String ownerId) {
         return carsService.getAllByOwner(ownerId);
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/cars", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public CarsDTO insert(@RequestBody @Validated({ActionInsert.class}) CarsDTO carsDTO) {
         return carsService.insert(carsDTO);
     }
 
-    @RequestMapping(value = "/cars", method = RequestMethod.PUT,
-            consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/cars", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO update(@RequestBody @Validated({ActionUpdate.class}) CarsDTO carsDTO) {
         return carsService.update(carsDTO);
     }
 
-    @RequestMapping(value = "/cars/{id}", method = RequestMethod.DELETE,
-            consumes = "application/json")
+    @DeleteMapping(value = "/cars/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") @Validated @NotBlank String id) {
         carsService.delete(id);

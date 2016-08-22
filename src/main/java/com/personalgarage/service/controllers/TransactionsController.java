@@ -23,29 +23,25 @@ public class TransactionsController extends BaseRestController implements ITrans
         this.transactionsService = transactionsService;
     }
 
-    @RequestMapping(value = "/transactions/{id}", method = RequestMethod.GET,
-            consumes = "application/json", produces = "application/json")
+    @GetMapping(value = "/transactions/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return transactionsService.get(id);
     }
 
-    @RequestMapping(value = "/transactions", method = RequestMethod.POST,
-            consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/transactions", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public TransactionsDTO insert(@RequestBody @Validated({ActionInsert.class}) TransactionsDTO transactionsDTO) {
         return transactionsService.insert(transactionsDTO);
     }
 
-    @RequestMapping(value = "/transactions", method = RequestMethod.PUT,
-            consumes = "application/json", produces = "application/json")
+    @PutMapping(value = "/transactions", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionsDTO update(@RequestBody @Validated({ActionUpdate.class}) TransactionsDTO transactionsDTO) {
         return transactionsService.update(transactionsDTO);
     }
 
-    @RequestMapping(value = "/transactions/{id}", method = RequestMethod.DELETE,
-            consumes = "application/json", produces = "application/json")
+    @DeleteMapping(value = "/transactions/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") @Validated @NotBlank String id) {
         transactionsService.delete(id);
