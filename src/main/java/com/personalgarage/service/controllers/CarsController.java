@@ -1,6 +1,7 @@
 package com.personalgarage.service.controllers;
 
 import com.personalgarage.service.base.controllers.BaseRestController;
+import com.personalgarage.service.base.validation.groups.ActionGet;
 import com.personalgarage.service.base.validation.groups.ActionInsert;
 import com.personalgarage.service.base.validation.groups.ActionUpdate;
 import com.personalgarage.service.controllers.interfaces.ICarsController;
@@ -27,15 +28,15 @@ public class CarsController extends BaseRestController implements ICarsControlle
 
     @GetMapping(value = "/cars/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CarsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
+    public CarsDTO get(@PathVariable("id") @Validated({ActionGet.class}) @NotBlank String id) {
         return carsService.get(id);
     }
 
     @Override
-    @GetMapping(value = "/cars/users/{ownerId}", produces = "application/json")
+    @GetMapping(value = "/cars/users/{userId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<CarsDTO> getAllByOwner(String ownerId) {
-        return carsService.getAllByOwner(ownerId);
+    public List<CarsDTO> getAllByOwner(@PathVariable("userId") @Validated({ActionGet.class}) @NotBlank String userId) {
+        return carsService.getAllByUser(userId);
     }
 
     @PostMapping(value = "/cars", produces = "application/json")

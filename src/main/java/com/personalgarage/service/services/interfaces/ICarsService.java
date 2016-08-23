@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ICarsService extends IRestService<CarsDTO> {
 
-    List<CarsDTO> getAllByOwner(String ownerId);
+    List<CarsDTO> getAllByUser(String userId);
 }

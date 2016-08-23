@@ -1,7 +1,7 @@
 package com.personalgarage.service.services;
 
 import com.personalgarage.service.base.services.BaseRestService;
-import com.personalgarage.service.components.RestMapper;
+import com.personalgarage.service.base.RestMapper;
 import com.personalgarage.service.dto.TransactionsDTO;
 import com.personalgarage.service.entities.Transactions;
 import com.personalgarage.service.repositories.TransactionsRepository;

@@ -1,48 +1,20 @@
 package com.personalgarage.service.entities;
 
+import com.personalgarage.service.constants.UsersStatesConst;
+import com.personalgarage.service.constants.UsersTypesConst;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Document(collection = "users")
 public class Users {
 
     private String username;
-    private UsersStates usersStates;
-    private UsersTypes usersTypes;
+    private UsersStatesConst usersStates;
+    private UsersTypesConst usersTypes;
     private List<UsersSettings> usersSettings;
-
-    public Users() {}
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public UsersStates getUsersStates() {
-        return usersStates;
-    }
-
-    public void setUsersStates(UsersStates usersStates) {
-        this.usersStates = usersStates;
-    }
-
-    public UsersTypes getUsersTypes() {
-        return usersTypes;
-    }
-
-    public void setUsersTypes(UsersTypes usersTypes) {
-        this.usersTypes = usersTypes;
-    }
-
-    public List<UsersSettings> getUsersSettings() {
-        return usersSettings;
-    }
-
-    public void setUsersSettings(List<UsersSettings> usersSettings) {
-        this.usersSettings = usersSettings;
-    }
 }

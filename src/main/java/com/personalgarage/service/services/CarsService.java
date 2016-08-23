@@ -1,7 +1,7 @@
 package com.personalgarage.service.services;
 
 import com.personalgarage.service.base.services.BaseRestService;
-import com.personalgarage.service.components.RestMapper;
+import com.personalgarage.service.base.RestMapper;
 import com.personalgarage.service.dto.CarsDTO;
 import com.personalgarage.service.entities.Cars;
 import com.personalgarage.service.repositories.CarsRepository;
@@ -28,7 +28,7 @@ public class CarsService extends BaseRestService implements ICarsService {
     }
 
     @Override
-    public List<CarsDTO> getAllByOwner(String ownerId) {
+    public List<CarsDTO> getAllByUser(String ownerId) {
         return restMapper.convertToDtos(carsRepository.findByOwner(ownerId));
     }
 

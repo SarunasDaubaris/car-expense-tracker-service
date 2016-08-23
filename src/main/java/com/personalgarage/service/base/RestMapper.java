@@ -1,4 +1,4 @@
-package com.personalgarage.service.components;
+package com.personalgarage.service.base;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

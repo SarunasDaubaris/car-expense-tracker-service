@@ -3,6 +3,8 @@ package com.personalgarage.service.integration;
 import com.personalgarage.service.BaseTest;
 import com.personalgarage.service.controllers.CarsController;
 import com.personalgarage.service.dto.CarsDTO;
+import com.personalgarage.service.entities.Users;
+import com.personalgarage.service.entities.UsersSettings;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +48,10 @@ public class CarsIntegrationTest extends BaseTest {
 
         verify(carsController, times(1)).get("1");
         verifyNoMoreInteractions(carsController);
+    }
+
+    @Test
+    @WithMockUser
+    public void givenCarDTOReturnsInsertedCarDTO() {
     }
 }
