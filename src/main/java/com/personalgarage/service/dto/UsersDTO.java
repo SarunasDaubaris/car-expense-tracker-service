@@ -7,6 +7,7 @@ import com.personalgarage.service.constants.UsersStatesConst;
 import com.personalgarage.service.constants.UsersTypesConst;
 import com.personalgarage.service.entities.UsersSettings;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class UsersDTO extends BaseDTO {
 
     @NotBlank(message = "Username cannot be blank", groups = { ActionInsert.class, ActionUpdate.class })

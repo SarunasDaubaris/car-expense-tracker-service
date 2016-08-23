@@ -2,9 +2,8 @@ package com.personalgarage.service.integration;
 
 import com.personalgarage.service.BaseTest;
 import com.personalgarage.service.controllers.CarsController;
+import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.dto.CarsDTO;
-import com.personalgarage.service.entities.Users;
-import com.personalgarage.service.entities.UsersSettings;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +32,15 @@ public class CarsIntegrationTest extends BaseTest {
     @WithMockUser
     public void givenCarIdReturnsCarDTO() throws Exception {
         CarsDTO car = new CarsDTO();
-        car.setId("1");
+        car.setId(TestCars.BMW_530D_2013.getId());
         when(carsController.get("1")).thenReturn(car);
 
-        mockMvc.perform(get("/cars/{id}", "1"))
+        mockMvc.perform(get("/cars/{id}", TestCars.BMW_530D_2013.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", new ArgumentMatcher<String>() {
                     @Override
                     public boolean matches(Object argument) {
-                        String result = (String) argument;
-                        return result.equals("1");
+                        return TestCars.BMW_530D_2013.getId().equals((String) argument);
                     }
                 }));
 

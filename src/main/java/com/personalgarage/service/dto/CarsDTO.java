@@ -5,6 +5,7 @@ import com.personalgarage.service.base.validation.groups.ActionInsert;
 import com.personalgarage.service.base.validation.groups.ActionUpdate;
 import com.personalgarage.service.constants.FuelTypesConst;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class CarsDTO extends BaseDTO {
 
     @NotBlank(message = "UserId cannot be blank", groups = { ActionInsert.class, ActionUpdate.class })
