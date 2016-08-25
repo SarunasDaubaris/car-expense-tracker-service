@@ -35,7 +35,7 @@ public class CarsController extends BaseRestController implements ICarsControlle
     @Override
     @GetMapping(value = "/cars/users/{userId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public List<CarsDTO> getAllByOwner(@PathVariable("userId") @Validated({ActionGet.class}) @NotBlank String userId) {
+    public List<CarsDTO> getAllByUserId(@PathVariable("userId") @Validated({ActionGet.class}) @NotBlank String userId) {
         return carsService.getAllByUser(userId);
     }
 
