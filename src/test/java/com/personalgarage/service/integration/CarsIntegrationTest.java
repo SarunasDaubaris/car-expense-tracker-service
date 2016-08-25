@@ -33,18 +33,18 @@ public class CarsIntegrationTest extends BaseTest {
     public void givenCarIdReturnsCarDTO() throws Exception {
         CarsDTO car = new CarsDTO();
         car.setId(TestCars.BMW_530D_2013.getId());
-        when(carsController.get("1")).thenReturn(car);
+        when(carsController.get(TestCars.BMW_530D_2013.getId())).thenReturn(car);
 
         mockMvc.perform(get("/cars/{id}", TestCars.BMW_530D_2013.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", new ArgumentMatcher<String>() {
                     @Override
                     public boolean matches(Object argument) {
-                        return TestCars.BMW_530D_2013.getId().equals((String) argument);
+                        return TestCars.BMW_530D_2013.getId().equals(argument);
                     }
                 }));
 
-        verify(carsController, times(1)).get("1");
+        verify(carsController, times(1)).get(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
     }
 
