@@ -26,7 +26,7 @@ public class UsersController extends BaseRestController implements IUsersControl
 
     @GetMapping(value = "/users/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public UsersDTO get(@PathVariable("id") @Validated({ActionGet.class}) @NotBlank String id) {
+    public UsersDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return usersService.get(id);
     }
 

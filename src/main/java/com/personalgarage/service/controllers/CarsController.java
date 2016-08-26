@@ -28,7 +28,7 @@ public class CarsController extends BaseRestController implements ICarsControlle
 
     @GetMapping(value = "/cars/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CarsDTO get(@PathVariable("id") @Validated({ActionGet.class}) @NotBlank String id) {
+    public CarsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return carsService.get(id);
     }
 
