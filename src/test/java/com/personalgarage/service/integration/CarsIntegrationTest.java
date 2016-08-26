@@ -22,8 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -121,6 +120,55 @@ public class CarsIntegrationTest extends BaseTest {
                 }));
 
         verify(carsController, times(1)).insert(insertCar);
+        verifyNoMoreInteractions(carsController);
+    }
+
+    @Test
+    @WithMockUser
+    public void givenValidCarDTOReturnsUpdatedCarDTO() throws Exception {
+        CarsDTO updateCar = new CarsDTO();
+        updateCar.setId(TestCars.BMW_530D_2013.getId());
+        updateCar.setUserId(TestCars.BMW_530D_2013.getUserId());
+        updateCar.setMake(TestCars.BMW_530D_2013.getMake());
+        updateCar.setModel(TestCars.BMW_530D_2013.getModel());
+        updateCar.setYear(TestCars.BMW_530D_2013.getYear());
+        updateCar.setFuelTypes(TestCars.BMW_530D_2013.getFuelTypes());
+        updateCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
+
+        CarsDTO resultCar = new CarsDTO();
+        resultCar.setId(TestCars.BMW_530D_2013.getId());
+        resultCar.setUserId(TestUsers.USER_1.getId());
+        resultCar.setMake(TestCars.BMW_530D_2013.getMake());
+        resultCar.setModel(TestCars.BMW_530D_2013.getModel());
+        resultCar.setYear(TestCars.BMW_530D_2013.getYear());
+        resultCar.setFuelTypes(TestCars.BMW_530D_2013.getFuelTypes());
+        resultCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
+
+        when(carsController.update(updateCar)).thenReturn(resultCar);
+
+        mockMvc.perform(put("/cars")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writer().writeValueAsBytes(updateCar)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", new ArgumentMatcher<LinkedHashMap<String, String>>() {
+                    @Override
+                    public boolean matches(Object argument) {
+                        LinkedHashMap<String, String> result = (LinkedHashMap<String, String>) argument;
+                        return result.get("id").equals(TestCars.BMW_530D_2013.getId());
+                    }
+                }));
+
+        verify(carsController, times(1)).update(updateCar);
+        verifyNoMoreInteractions(carsController);
+    }
+
+    @Test
+    @WithMockUser
+    public void givenValidDeleteCarIdReturnsNoContent() throws Exception {
+        mockMvc.perform(delete("/cars/{id}", TestCars.BMW_530D_2013.getId()))
+                .andExpect(status().isNoContent());
+
+        verify(carsController, times(1)).delete(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
     }
 }
