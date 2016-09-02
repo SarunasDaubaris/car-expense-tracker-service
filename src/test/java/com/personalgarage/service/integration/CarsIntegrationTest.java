@@ -2,10 +2,10 @@ package com.personalgarage.service.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.BaseTest;
-import com.personalgarage.service.controllers.CarsController;
+import com.personalgarage.service.domain.cars.application.CarsController;
 import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.data.TestUsers;
-import com.personalgarage.service.dto.CarsDTO;
+import com.personalgarage.service.domain.cars.data.dtos.CarsDTO;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
