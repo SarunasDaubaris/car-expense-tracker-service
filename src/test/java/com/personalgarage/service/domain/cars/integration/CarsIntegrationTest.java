@@ -1,7 +1,7 @@
-package com.personalgarage.service.integration;
+package com.personalgarage.service.domain.cars.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.BaseTest;
+import com.personalgarage.service.base.BaseTest;
 import com.personalgarage.service.domain.cars.application.CarsController;
 import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.data.TestUsers;

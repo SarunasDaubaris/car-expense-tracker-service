@@ -1,4 +1,4 @@
-package com.personalgarage.service;
+package com.personalgarage.service.base;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.TestPropertySource;
