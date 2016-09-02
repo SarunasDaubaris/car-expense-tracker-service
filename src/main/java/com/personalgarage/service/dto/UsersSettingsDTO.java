@@ -1,18 +1,20 @@
 package com.personalgarage.service.dto;
 
 import com.personalgarage.service.base.dto.BaseDTO;
+import com.personalgarage.service.base.validation.groups.ActionInsert;
+import com.personalgarage.service.base.validation.groups.ActionUpdate;
+import com.personalgarage.service.constants.UsersSettingsTypesConst;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-public final class UsersSettingsDTO extends BaseDTO {
+import javax.validation.constraints.NotNull;
 
-    private UsersSettingsTypesDTO usersSettingsTypes;
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class UsersSettingsDTO extends BaseDTO {
 
-    public UsersSettingsDTO() {}
-
-    public UsersSettingsTypesDTO getUsersSettingsTypes() {
-        return usersSettingsTypes;
-    }
-
-    public void setUsersSettingsTypes(UsersSettingsTypesDTO usersSettingsTypes) {
-        this.usersSettingsTypes = usersSettingsTypes;
-    }
+    @NotNull(message = "UsersSettingsTypes cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
+    private UsersSettingsTypesConst usersSettingsTypes;
 }

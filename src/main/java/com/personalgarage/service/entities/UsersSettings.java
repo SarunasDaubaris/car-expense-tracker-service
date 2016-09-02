@@ -1,20 +1,17 @@
 package com.personalgarage.service.entities;
 
 import com.personalgarage.service.base.entities.BaseEntity;
+import com.personalgarage.service.constants.UsersSettingsTypesConst;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Document(collection = "usersSettings")
-public final class UsersSettings extends BaseEntity {
+public class UsersSettings extends BaseEntity {
 
-    private UsersSettingsTypes usersSettingsTypes;
-
-    public UsersSettings() {}
-
-    public UsersSettingsTypes getUsersSettingsTypes() {
-        return usersSettingsTypes;
-    }
-
-    public void setUsersSettingsTypes(UsersSettingsTypes usersSettingsTypes) {
-        this.usersSettingsTypes = usersSettingsTypes;
-    }
+    private UsersSettingsTypesConst usersSettingsTypes;
 }
