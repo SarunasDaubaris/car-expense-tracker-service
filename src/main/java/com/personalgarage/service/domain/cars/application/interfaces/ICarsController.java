@@ -7,5 +7,13 @@ import java.util.List;
 
 public interface ICarsController extends IRestController {
 
-    List<CarsDTO> getAllByUserId(String ownerId);
+    CarsDTO get(String id);
+
+    List<CarsDTO> getAllByUserId(String userId);
+
+    CarsDTO insert(CarsDTO carsDTO);
+
+    CarsDTO update(CarsDTO carsDTO);
+
+    void delete(String id);
 }
