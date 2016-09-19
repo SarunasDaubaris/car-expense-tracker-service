@@ -30,7 +30,7 @@ public class TransactionsDTO extends BaseDTO {
     private Long createdTime;
 
     @NotNull(message = "LastUpdatedTime cannot be null", groups = {ActionUpdate.class})
-    private Long lastUpdateTime;
+    private Long lastUpdatedTime;
 
     @NotNull(message = "Amount cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
     private BigDecimal amount;

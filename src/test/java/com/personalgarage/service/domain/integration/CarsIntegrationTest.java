@@ -1,10 +1,10 @@
-package com.personalgarage.service.domain.cars.integration;
+package com.personalgarage.service.domain.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.base.BaseTest;
-import com.personalgarage.service.domain.cars.application.CarsController;
 import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.data.TestUsers;
+import com.personalgarage.service.domain.cars.application.CarsController;
 import com.personalgarage.service.domain.cars.data.dtos.CarsDTO;
 import org.junit.Test;
 import org.mockito.ArgumentMatcher;
