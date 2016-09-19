@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("/transactions")
 public class TransactionsController extends BaseRestController implements ITransactionController {
 
     private ITransactionsService transactionsService;
@@ -24,28 +25,28 @@ public class TransactionsController extends BaseRestController implements ITrans
     }
 
     @Override
-    @GetMapping(value = "/transactions/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return transactionsService.get(id);
     }
 
     @Override
-    @PostMapping(value = "/transactions", produces = "application/json")
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public TransactionsDTO insert(@RequestBody @Validated({ActionInsert.class}) TransactionsDTO transactionsDTO) {
         return transactionsService.insert(transactionsDTO);
     }
 
     @Override
-    @PutMapping(value = "/transactions", produces = "application/json")
+    @PutMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionsDTO update(@RequestBody @Validated({ActionUpdate.class}) TransactionsDTO transactionsDTO) {
         return transactionsService.update(transactionsDTO);
     }
 
     @Override
-    @DeleteMapping(value = "/transactions/{id}", produces = "application/json")
+    @DeleteMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") @Validated @NotBlank String id) {
         transactionsService.delete(id);

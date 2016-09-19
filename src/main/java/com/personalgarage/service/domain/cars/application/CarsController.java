@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/cars")
 public class CarsController extends BaseRestController implements ICarsController {
 
     private ICarsService carsService;
@@ -27,35 +28,35 @@ public class CarsController extends BaseRestController implements ICarsControlle
     }
 
     @Override
-    @GetMapping(value = "/cars/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return carsService.get(id);
     }
 
     @Override
-    @GetMapping(value = "/cars/users/{userId}", produces = "application/json")
+    @GetMapping(value = "/users/{userId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<CarsDTO> getAllByUserId(@PathVariable("userId") @Validated({ActionGet.class}) @NotBlank String userId) {
         return carsService.getAllByUser(userId);
     }
 
     @Override
-    @PostMapping(value = "/cars", produces = "application/json")
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public CarsDTO insert(@RequestBody @Validated({ActionInsert.class}) CarsDTO carsDTO) {
         return carsService.insert(carsDTO);
     }
 
     @Override
-    @PutMapping(value = "/cars", produces = "application/json")
+    @PutMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public CarsDTO update(@RequestBody @Validated({ActionUpdate.class}) CarsDTO carsDTO) {
         return carsService.update(carsDTO);
     }
 
     @Override
-    @DeleteMapping(value = "/cars/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") @Validated @NotBlank String id) {
         carsService.delete(id);

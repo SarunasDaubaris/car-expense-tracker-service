@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("/users")
 public class UsersController extends BaseRestController implements IUsersController {
 
     private IUsersService usersService;
@@ -24,28 +25,28 @@ public class UsersController extends BaseRestController implements IUsersControl
     }
 
     @Override
-    @GetMapping(value = "/users/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public UsersDTO get(@PathVariable("id") @Validated @NotBlank String id) {
         return usersService.get(id);
     }
 
     @Override
-    @PostMapping(value = "/users", produces = "application/json")
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public UsersDTO insert(@RequestBody @Validated({ActionInsert.class}) UsersDTO usersDTO) {
         return usersService.insert(usersDTO);
     }
 
     @Override
-    @PutMapping(value = "/users", produces = "application/json")
+    @PutMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public UsersDTO update(@RequestBody @Validated({ActionUpdate.class}) UsersDTO usersDTO) {
         return usersService.update(usersDTO);
     }
 
     @Override
-    @DeleteMapping(value = "/users/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") @Validated @NotBlank String id) {
         usersService.delete(id);
