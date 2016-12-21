@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -45,12 +46,7 @@ public class CarsIntegrationTest extends BaseTest {
 
         mockMvc.perform(get("/cars/{id}", TestCars.BMW_530D_2013.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", new ArgumentMatcher<String>() {
-                    @Override
-                    public boolean matches(Object argument) {
-                        return TestCars.BMW_530D_2013.getId().equals(argument);
-                    }
-                }));
+                .andExpect(jsonPath("id", equalTo(TestCars.BMW_530D_2013.getId())));
 
         verify(carsController, times(1)).get(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
@@ -68,16 +64,11 @@ public class CarsIntegrationTest extends BaseTest {
 
         mockMvc.perform(get("/cars/users/{userId}", TestUsers.USER_1.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", new ArgumentMatcher<List<LinkedHashMap<String, String>>>() {
-                    @Override
-                    public boolean matches(Object argument) {
-                        List<LinkedHashMap<String, String>> list = (List<LinkedHashMap<String, String>>) argument;
-                        return !CollectionUtils.isEmpty(list)
-                                && list.size() == 1
-                                && list.get(0).get("id").equals(TestCars.BMW_530D_2013.getId())
-                                && list.get(0).get("userId").equals(TestCars.BMW_530D_2013.getUserId());
-                    }
-                }));
+                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<List<LinkedHashMap<String, String>>>) argument ->
+                        !CollectionUtils.isEmpty(argument)
+                                && argument.size() == 1
+                                && argument.get(0).get("id").equals(TestCars.BMW_530D_2013.getId())
+                                && argument.get(0).get("userId").equals(TestCars.BMW_530D_2013.getUserId()))));
 
         verify(carsController, times(1)).getAllByUserId(TestUsers.USER_1.getId());
         verifyNoMoreInteractions(carsController);
@@ -110,14 +101,9 @@ public class CarsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertCar)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$", new ArgumentMatcher<LinkedHashMap<String, String>>() {
-                    @Override
-                    public boolean matches(Object argument) {
-                        LinkedHashMap<String, String> result = (LinkedHashMap<String, String>) argument;
-                        return result.get("id").equals(TestCars.BMW_530D_2013.getId())
-                                && result.get("userId").equals(TestCars.BMW_530D_2013.getUserId());
-                    }
-                }));
+                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
+                        argument.get("id").equals(TestCars.BMW_530D_2013.getId())
+                                && argument.get("userId").equals(TestCars.BMW_530D_2013.getUserId()))));
 
         verify(carsController, times(1)).insert(insertCar);
         verifyNoMoreInteractions(carsController);
@@ -150,13 +136,8 @@ public class CarsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(updateCar)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", new ArgumentMatcher<LinkedHashMap<String, String>>() {
-                    @Override
-                    public boolean matches(Object argument) {
-                        LinkedHashMap<String, String> result = (LinkedHashMap<String, String>) argument;
-                        return result.get("id").equals(TestCars.BMW_530D_2013.getId());
-                    }
-                }));
+                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
+                        argument.get("id").equals(TestCars.BMW_530D_2013.getId()))));
 
         verify(carsController, times(1)).update(updateCar);
         verifyNoMoreInteractions(carsController);
