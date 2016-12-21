@@ -1,7 +1,7 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.domain.users.data.constants.UsersStatesConst;
-import com.personalgarage.service.domain.users.data.constants.UsersTypesConst;
+import com.personalgarage.service.api.domain.users.data.constants.UsersStatesConst;
+import com.personalgarage.service.api.domain.users.data.constants.UsersTypesConst;
 
 public enum TestUsers {
 

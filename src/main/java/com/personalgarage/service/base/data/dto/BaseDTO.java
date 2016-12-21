@@ -1,8 +1,8 @@
 package com.personalgarage.service.base.data.dto;
 
 import com.personalgarage.service.base.data.dto.interfaces.IDTO;
-import com.personalgarage.service.core.validation.groups.ActionInsert;
-import com.personalgarage.service.core.validation.groups.ActionUpdate;
+import com.personalgarage.service.common.validation.groups.ActionInsert;
+import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;

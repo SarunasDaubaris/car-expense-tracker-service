@@ -1,6 +1,6 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.domain.transactions.data.constants.TransactionsTypesConst;
+import com.personalgarage.service.api.domain.transactions.data.constants.TransactionsTypesConst;
 
 import java.math.BigDecimal;
 import java.util.Date;
