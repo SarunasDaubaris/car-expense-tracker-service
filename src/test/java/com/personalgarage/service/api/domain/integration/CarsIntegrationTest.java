@@ -1,13 +1,12 @@
 package com.personalgarage.service.api.domain.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.personalgarage.service.api.domain.cars.application.CarsController;
+import com.personalgarage.service.api.domain.cars.data.dtos.CarsDTO;
 import com.personalgarage.service.base.BaseTest;
 import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.data.TestUsers;
-import com.personalgarage.service.api.domain.cars.application.CarsController;
-import com.personalgarage.service.api.domain.cars.data.dtos.CarsDTO;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +14,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -64,11 +61,9 @@ public class CarsIntegrationTest extends BaseTest {
 
         mockMvc.perform(get("/cars/users/{userId}", TestUsers.USER_1.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<List<LinkedHashMap<String, String>>>) argument ->
-                        !CollectionUtils.isEmpty(argument)
-                                && argument.size() == 1
-                                && argument.get(0).get("id").equals(TestCars.BMW_530D_2013.getId())
-                                && argument.get(0).get("userId").equals(TestCars.BMW_530D_2013.getUserId()))));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.[0].id", is(TestCars.BMW_530D_2013.getId())))
+                .andExpect(jsonPath("$.[0].userId", is(TestCars.BMW_530D_2013.getUserId())));
 
         verify(carsController, times(1)).getAllByUserId(TestUsers.USER_1.getId());
         verifyNoMoreInteractions(carsController);
@@ -101,9 +96,8 @@ public class CarsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertCar)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
-                        argument.get("id").equals(TestCars.BMW_530D_2013.getId())
-                                && argument.get("userId").equals(TestCars.BMW_530D_2013.getUserId()))));
+                .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId())))
+                .andExpect(jsonPath("$.userId", is(TestCars.BMW_530D_2013.getUserId())));
 
         verify(carsController, times(1)).insert(insertCar);
         verifyNoMoreInteractions(carsController);
@@ -136,8 +130,7 @@ public class CarsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(updateCar)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
-                        argument.get("id").equals(TestCars.BMW_530D_2013.getId()))));
+                .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId())));
 
         verify(carsController, times(1)).update(updateCar);
         verifyNoMoreInteractions(carsController);

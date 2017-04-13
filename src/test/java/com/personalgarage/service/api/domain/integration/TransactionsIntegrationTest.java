@@ -1,13 +1,11 @@
 package com.personalgarage.service.api.domain.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.base.BaseTest;
-import com.personalgarage.service.data.TestTransactions;
 import com.personalgarage.service.api.domain.transactions.application.TransactionsController;
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionsDTO;
-import org.hamcrest.Matchers;
+import com.personalgarage.service.base.BaseTest;
+import com.personalgarage.service.data.TestTransactions;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,9 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.LinkedHashMap;
-
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -43,8 +39,7 @@ public class TransactionsIntegrationTest extends BaseTest {
 
         mockMvc.perform(get("/transactions/{id}", TestTransactions.FUEL_PURCHASE_1.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", equalTo((ArgumentMatcher<String>) argument ->
-                        TestTransactions.FUEL_PURCHASE_1.getId().equals(argument))));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())));
 
         verify(transactionsController, times(1)).get(TestTransactions.FUEL_PURCHASE_1.getId());
         verifyNoMoreInteractions(transactionsController);
@@ -79,9 +74,8 @@ public class TransactionsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertTransaction)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$", Matchers.equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
-                        TestTransactions.FUEL_PURCHASE_1.getId().equals(argument.get("id"))
-                                && TestTransactions.FUEL_PURCHASE_1.getUserId().equals(argument.get("userId")))));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())))
+                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId())));
 
         verify(transactionsController, times(1)).insert(insertTransaction);
         verifyNoMoreInteractions(transactionsController);
@@ -116,9 +110,8 @@ public class TransactionsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(updateTransaction)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", equalTo((ArgumentMatcher<LinkedHashMap<String, String>>) argument ->
-                        TestTransactions.FUEL_PURCHASE_1.getId().equals(argument.get("id"))
-                                && TestTransactions.FUEL_PURCHASE_1.getUserId().equals(argument.get("userId")))));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())))
+                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId())));
 
         verify(transactionsController, times(1)).update(updateTransaction);
         verifyNoMoreInteractions(transactionsController);
