@@ -3,29 +3,27 @@ package com.personalgarage.service.api.domain.users.data.constants;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UsersStatesConst {
+public enum UserTypeConst {
 
-    NEW("1", "NEW"),
-    ACTIVE("2", "ACTIVE"),
-    BLOCKED("3", "BLOCKED"),
-    DELETED("4", "DELETED");
+    BASIC("1", "BASIC"),
+    PREMIUM("2", "PREMIUM");
 
     private final String id;
     private final String value;
 
-    UsersStatesConst(String id, String value) {
+    UserTypeConst(String id, String value) {
         this.id = id;
         this.value = value;
     }
 
     @JsonCreator
-    public static UsersStatesConst forId(String id) {
-        for(UsersStatesConst cnst : UsersStatesConst.values()) {
+    public static UserTypeConst forId(String id) {
+        for(UserTypeConst cnst : UserTypeConst.values()) {
             if(cnst.getId().equals(id)) {
                 return cnst;
             }
         }
-        throw new IllegalArgumentException("Invalid UsersStatesConst ID: " + id);
+        throw new IllegalArgumentException("Invalid UsersTypesConst ID: " + id);
     }
 
     @JsonValue

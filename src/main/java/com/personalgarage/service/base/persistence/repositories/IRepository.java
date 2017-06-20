@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 
 @Repository
-public interface IRepository<T, ID extends Serializable>
-        extends MongoRepository<T, ID> {
+public interface IRepository<T, ID extends Serializable> extends MongoRepository<T, ID> {
 }

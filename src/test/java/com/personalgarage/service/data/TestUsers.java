@@ -1,18 +1,18 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.api.domain.users.data.constants.UsersStatesConst;
-import com.personalgarage.service.api.domain.users.data.constants.UsersTypesConst;
+import com.personalgarage.service.api.domain.users.data.constants.UserStateConst;
+import com.personalgarage.service.api.domain.users.data.constants.UserTypeConst;
 
 public enum TestUsers {
 
-    USER_1("1", "sarunas.d@mail.com", UsersStatesConst.ACTIVE, UsersTypesConst.BASIC);
+    USER_1("1", "sarunas.d@mail.com", UserStateConst.ACTIVE, UserTypeConst.BASIC);
 
     private final String id;
     private final String username;
-    private final UsersStatesConst usersStates;
-    private final UsersTypesConst usersTypes;
+    private final UserStateConst usersStates;
+    private final UserTypeConst usersTypes;
 
-    TestUsers(String id, String username, UsersStatesConst usersStates, UsersTypesConst usersTypes) {
+    TestUsers(String id, String username, UserStateConst usersStates, UserTypeConst usersTypes) {
         this.id = id;
         this.username = username;
         this.usersStates = usersStates;
@@ -27,11 +27,11 @@ public enum TestUsers {
         return username;
     }
 
-    public UsersStatesConst getUsersStates() {
+    public UserStateConst getUsersStates() {
         return usersStates;
     }
 
-    public UsersTypesConst getUsersTypes() {
+    public UserTypeConst getUsersTypes() {
         return usersTypes;
     }
 }

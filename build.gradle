@@ -1,17 +1,21 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.3.RELEASE'
+		springBootVersion = '1.5.4.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
 }
 
+plugins {
+	id "org.flywaydb.flyway" version "4.1.2"
+}
+
 apply plugin: 'java'
-apply plugin: 'spring-boot' 
+apply plugin: 'org.springframework.boot'
 
 jar {
 	baseName = 'personalgarageservice'
@@ -25,17 +29,26 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb');
-	compile('org.springframework.boot:spring-boot-starter-security');
-	compile('org.springframework.boot:spring-boot-starter-web');
-	compile('org.springframework.boot:spring-boot-starter-social-facebook');
-	compile('org.springframework.session:spring-session');
-	compile('org.modelmapper:modelmapper:0.7.7');
-	compile('org.projectlombok:lombok:1.16.12');
-	compile('com.fasterxml.jackson.core:jackson-databind:2.8.5');
-	compile('com.fasterxml.jackson.core:jackson-core:2.8.5');
-	compile('com.fasterxml.jackson.core:jackson-annotations:2.8.5');
-	compile("org.flywaydb:flyway-core:4.1.2");
-	testCompile('org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE');
-	testCompile('org.springframework.security:spring-security-test:4.2.0.RELEASE');
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.session:spring-session')
+	compile('org.modelmapper:modelmapper:0.7.7')
+	compile('org.projectlombok:lombok:1.16.12')
+	compile('com.fasterxml.jackson.core:jackson-databind:2.8.5')
+	compile('com.fasterxml.jackson.core:jackson-core:2.8.5')
+	compile('com.fasterxml.jackson.core:jackson-annotations:2.8.5')
+	compile('org.postgresql:postgresql:9.4.1211.jre7')
+	compile("org.flywaydb:flyway-core:4.1.2")
+	testCompile('org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE')
+	testCompile('org.springframework.security:spring-security-test:4.2.0.RELEASE')
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/personal-garage'
+	user = 'postgres'
+	password = 'admin'
+	schemas = ['public']
+	locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
 }

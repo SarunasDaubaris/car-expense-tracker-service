@@ -1,11 +1,10 @@
 package com.personalgarage.service.api.domain.users.data.dtos;
 
-import com.personalgarage.service.api.domain.users.data.constants.UsersTypesConst;
-import com.personalgarage.service.api.domain.users.persistence.entities.UsersSettings;
+import com.personalgarage.service.api.domain.users.data.constants.UserStateConst;
+import com.personalgarage.service.api.domain.users.data.constants.UserTypeConst;
 import com.personalgarage.service.base.data.dto.BaseDTO;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
-import com.personalgarage.service.api.domain.users.data.constants.UsersStatesConst;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,11 +22,11 @@ public class UsersDTO extends BaseDTO {
     private String username;
 
     @NotNull(message = "UsersStates cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
-    private UsersStatesConst usersStates;
+    private UserStateConst usersStates;
 
     @NotNull(message = "UsersTypes cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
-    private UsersTypesConst usersTypes;
+    private UserTypeConst usersTypes;
 
-    @NotNull(message = "UsersSettings cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
-    private List<UsersSettings> usersSettings;
+//    @NotNull(message = "UsersSettings cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
+//    private List<UsersSettings> usersSettings;
 }
