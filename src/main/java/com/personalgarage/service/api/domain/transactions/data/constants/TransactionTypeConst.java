@@ -3,7 +3,7 @@ package com.personalgarage.service.api.domain.transactions.data.constants;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TransactionsTypesConst {
+public enum TransactionTypeConst {
 
     FUEL("1", "FUEL"),
     INSURANCE("2", "INSURANCE"),
@@ -16,14 +16,14 @@ public enum TransactionsTypesConst {
     private final String id;
     private final String value;
 
-    TransactionsTypesConst(String id, String value) {
+    TransactionTypeConst(String id, String value) {
         this.id = id;
         this.value = value;
     }
 
     @JsonCreator
-    public static TransactionsTypesConst forId(String id) {
-        for(TransactionsTypesConst cnst : TransactionsTypesConst.values()) {
+    public static TransactionTypeConst forId(String id) {
+        for(TransactionTypeConst cnst : TransactionTypeConst.values()) {
             if(cnst.getId().equals(id)) {
                 return cnst;
             }

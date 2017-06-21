@@ -1,15 +1,16 @@
 package com.personalgarage.service.api.domain.transactions.application.interfaces;
 
-import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionsDTO;
-import com.personalgarage.service.base.application.interfaces.IRestController;
+import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
+import org.springframework.web.bind.annotation.RestController;
 
-public interface ITransactionController extends IRestController {
+@RestController
+public interface ITransactionController {
 
-    TransactionsDTO get(String id);
+    TransactionDTO get(Long id);
 
-    TransactionsDTO insert(TransactionsDTO transactionsDTO);
+    TransactionDTO insert(TransactionDTO transactionDTO);
 
-    TransactionsDTO update(TransactionsDTO transactionsDTO);
+    TransactionDTO update(TransactionDTO transactionDTO);
 
-    void delete(String id);
+    void delete(Long id);
 }

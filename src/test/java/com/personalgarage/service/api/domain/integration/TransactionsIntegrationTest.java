@@ -1,8 +1,10 @@
 package com.personalgarage.service.api.domain.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.api.domain.transactions.application.TransactionsController;
-import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionsDTO;
+import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
+import com.personalgarage.service.api.domain.transactions.application.TransactionController;
+import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
+import com.personalgarage.service.api.domain.users.data.dtos.UserDTO;
 import com.personalgarage.service.base.BaseTest;
 import com.personalgarage.service.data.TestTransactions;
 import org.junit.Test;
@@ -28,18 +30,18 @@ public class TransactionsIntegrationTest extends BaseTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private TransactionsController transactionsController;
+    private TransactionController transactionsController;
 
     @Test
     @WithMockUser
     public void givenValidTransactionIdReturnsTransactionDTO() throws Exception {
-        TransactionsDTO transaction = new TransactionsDTO();
+        TransactionDTO transaction = new TransactionDTO();
         transaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
         when(transactionsController.get(TestTransactions.FUEL_PURCHASE_1.getId())).thenReturn(transaction);
 
         mockMvc.perform(get("/transactions/{id}", TestTransactions.FUEL_PURCHASE_1.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())));
 
         verify(transactionsController, times(1)).get(TestTransactions.FUEL_PURCHASE_1.getId());
         verifyNoMoreInteractions(transactionsController);
@@ -47,24 +49,25 @@ public class TransactionsIntegrationTest extends BaseTest {
 
     @Test
     @WithMockUser
-    public void givenValidTransactionsDTOReturnsInsertedTransactionsDTO() throws Exception {
-        TransactionsDTO insertTransaction = new TransactionsDTO();
+    public void givenValidTransactionDTOReturnsInsertedTransactionDTO() throws Exception {
+        UserDTO user = new UserDTO();
+        user.setId(TestTransactions.FUEL_PURCHASE_1.getUserId());
+        CarDTO car = new CarDTO();
+        car.setId(TestTransactions.FUEL_PURCHASE_1.getCarId());
+
+        TransactionDTO insertTransaction = new TransactionDTO();
         insertTransaction.setId(null);
-        insertTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        insertTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        insertTransaction.setTransactionsTypes(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        insertTransaction.setCreatedTime(TestTransactions.FUEL_PURCHASE_1.getCreatedTime());
-        insertTransaction.setLastUpdatedTime(TestTransactions.FUEL_PURCHASE_1.getLastUpdatedTime());
+        insertTransaction.setUser(user);
+        insertTransaction.setCar(car);
+        insertTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
         insertTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         insertTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
-        TransactionsDTO resultTransaction = new TransactionsDTO();
+        TransactionDTO resultTransaction = new TransactionDTO();
         resultTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        resultTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        resultTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        resultTransaction.setTransactionsTypes(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        resultTransaction.setCreatedTime(TestTransactions.FUEL_PURCHASE_1.getCreatedTime());
-        resultTransaction.setLastUpdatedTime(TestTransactions.FUEL_PURCHASE_1.getLastUpdatedTime());
+        resultTransaction.setUser(user);
+        resultTransaction.setCar(car);
+        resultTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
         resultTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         resultTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
@@ -74,8 +77,8 @@ public class TransactionsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertTransaction)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())))
-                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId())));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())))
+                .andExpect(jsonPath("$.user.id", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())));
 
         verify(transactionsController, times(1)).insert(insertTransaction);
         verifyNoMoreInteractions(transactionsController);
@@ -83,24 +86,25 @@ public class TransactionsIntegrationTest extends BaseTest {
 
     @Test
     @WithMockUser
-    public void givenValidTransactionsDTOReturnsUpdatedTransactionsDTO() throws Exception {
-        TransactionsDTO updateTransaction = new TransactionsDTO();
+    public void givenValidTransactionDTOReturnsUpdatedTransactionDTO() throws Exception {
+        UserDTO user = new UserDTO();
+        user.setId(TestTransactions.FUEL_PURCHASE_1.getUserId());
+        CarDTO car = new CarDTO();
+        car.setId(TestTransactions.FUEL_PURCHASE_1.getCarId());
+
+        TransactionDTO updateTransaction = new TransactionDTO();
         updateTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        updateTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        updateTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        updateTransaction.setTransactionsTypes(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        updateTransaction.setCreatedTime(TestTransactions.FUEL_PURCHASE_1.getCreatedTime());
-        updateTransaction.setLastUpdatedTime(TestTransactions.FUEL_PURCHASE_1.getLastUpdatedTime());
+        updateTransaction.setUser(user);
+        updateTransaction.setCar(car);
+        updateTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
         updateTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         updateTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
-        TransactionsDTO resultTransaction = new TransactionsDTO();
+        TransactionDTO resultTransaction = new TransactionDTO();
         resultTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        resultTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        resultTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        resultTransaction.setTransactionsTypes(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        resultTransaction.setCreatedTime(TestTransactions.FUEL_PURCHASE_1.getCreatedTime());
-        resultTransaction.setLastUpdatedTime(TestTransactions.FUEL_PURCHASE_1.getLastUpdatedTime());
+        resultTransaction.setUser(user);
+        resultTransaction.setCar(car);
+        resultTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
         resultTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         resultTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
@@ -110,8 +114,8 @@ public class TransactionsIntegrationTest extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(updateTransaction)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId())))
-                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId())));
+                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())))
+                .andExpect(jsonPath("$.user.id", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())));
 
         verify(transactionsController, times(1)).update(updateTransaction);
         verifyNoMoreInteractions(transactionsController);
