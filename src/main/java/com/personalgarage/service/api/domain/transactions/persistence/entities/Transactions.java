@@ -1,7 +1,7 @@
 package com.personalgarage.service.api.domain.transactions.persistence.entities;
 
-import com.personalgarage.service.base.persistence.entities.BaseEntity;
 import com.personalgarage.service.api.domain.transactions.data.constants.TransactionsTypesConst;
+import com.personalgarage.service.base.persistence.entities.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
