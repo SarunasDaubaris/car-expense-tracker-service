@@ -5,8 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        CarsIntegrationTest.class,
-        TransactionsIntegrationTest.class
+        CarIntegrationTest.class,
+        TransactionIntegrationTest.class
 })
 public class DomainIntegrationTestSuite {
 }

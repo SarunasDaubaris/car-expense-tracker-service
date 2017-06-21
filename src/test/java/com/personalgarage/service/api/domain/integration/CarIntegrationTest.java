@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CarsIntegrationTest extends BaseTest {
+public class CarIntegrationTest extends BaseTest {
 
     @Autowired
     private MockMvc mockMvc;

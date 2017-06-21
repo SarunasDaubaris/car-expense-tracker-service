@@ -2,7 +2,6 @@ package com.personalgarage.service.api.domain.transactions.application.services;
 
 import com.personalgarage.service.api.domain.transactions.application.services.interfaces.ITransactionService;
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
-import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionsDTO;
 import com.personalgarage.service.api.domain.transactions.persistence.entities.Transaction;
 import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionRepository;
 import com.personalgarage.service.common.DomainDataMapper;
