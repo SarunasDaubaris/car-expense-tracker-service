@@ -1,9 +1,10 @@
 package com.personalgarage.service.api.domain.users.application.services.interfaces;
 
-import com.personalgarage.service.base.application.services.interfaces.IRestService;
 import com.personalgarage.service.api.domain.users.data.dtos.UserDTO;
+import org.springframework.stereotype.Service;
 
-public interface IUserService extends IRestService {
+@Service
+public interface IUserService {
 
     UserDTO get(String id);
 

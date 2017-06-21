@@ -7,13 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 @Data
 @NoArgsConstructor
 public class UserSettingDTO {
 
-    @Null(message = "Id must be null", groups = {ActionInsert.class})
     @NotNull(message = "Id cannot be null", groups = {ActionUpdate.class})
     private Long id;
 

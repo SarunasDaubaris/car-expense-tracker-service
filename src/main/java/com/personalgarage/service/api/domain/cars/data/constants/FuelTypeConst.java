@@ -3,7 +3,7 @@ package com.personalgarage.service.api.domain.cars.data.constants;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FuelTypesConst {
+public enum FuelTypeConst {
 
     DIESEL("1", "DIESEL"),
     PETROL("2", "PETROL"),
@@ -18,14 +18,14 @@ public enum FuelTypesConst {
     private final String id;
     private final String value;
 
-    FuelTypesConst(String id, String value) {
+    FuelTypeConst(String id, String value) {
         this.id = id;
         this.value = value;
     }
 
     @JsonCreator
-    public static FuelTypesConst forId(String id) {
-        for(FuelTypesConst cnst : FuelTypesConst.values()) {
+    public static FuelTypeConst forId(String id) {
+        for(FuelTypeConst cnst : FuelTypeConst.values()) {
             if(cnst.getId().equals(id)) {
                 return cnst;
             }

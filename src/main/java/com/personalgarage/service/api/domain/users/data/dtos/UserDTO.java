@@ -9,14 +9,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 public class UserDTO {
 
-    @Null(message = "Id must be null", groups = {ActionInsert.class})
     @NotNull(message = "Id cannot be null", groups = {ActionUpdate.class})
     private Long id;
 

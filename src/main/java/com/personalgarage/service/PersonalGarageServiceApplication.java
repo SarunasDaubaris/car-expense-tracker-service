@@ -1,6 +1,6 @@
 package com.personalgarage.service;
 
-import com.personalgarage.service.api.domain.cars.persistence.repositories.CarsRepository;
+import com.personalgarage.service.api.domain.cars.persistence.repositories.CarRepository;
 import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionsRepository;
 import com.personalgarage.service.api.domain.users.persistence.repositories.UserRepository;
 import com.personalgarage.service.api.domain.users.persistence.repositories.UserSettingsRepository;
@@ -16,12 +16,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
         org.springframework.boot.autoconfigure.session.SessionAutoConfiguration.class
 })
 @EnableMongoRepositories(basePackageClasses = {
-        CarsRepository.class,
         TransactionsRepository.class
 })
 @EnableJpaRepositories(basePackageClasses = {
         UserRepository.class,
-        UserSettingsRepository.class
+        UserSettingsRepository.class,
+        CarRepository.class
 })
 public class PersonalGarageServiceApplication {
 

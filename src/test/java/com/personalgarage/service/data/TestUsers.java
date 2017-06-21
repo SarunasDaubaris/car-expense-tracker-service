@@ -5,21 +5,21 @@ import com.personalgarage.service.api.domain.users.data.constants.UserTypeConst;
 
 public enum TestUsers {
 
-    USER_1("1", "sarunas.d@mail.com", UserStateConst.ACTIVE, UserTypeConst.BASIC);
+    USER_1(1L, "sarunas.d@mail.com", UserStateConst.ACTIVE, UserTypeConst.BASIC);
 
-    private final String id;
+    private final Long id;
     private final String username;
-    private final UserStateConst usersStates;
-    private final UserTypeConst usersTypes;
+    private final UserStateConst userState;
+    private final UserTypeConst userType;
 
-    TestUsers(String id, String username, UserStateConst usersStates, UserTypeConst usersTypes) {
+    TestUsers(Long id, String username, UserStateConst userState, UserTypeConst userType) {
         this.id = id;
         this.username = username;
-        this.usersStates = usersStates;
-        this.usersTypes = usersTypes;
+        this.userState = userState;
+        this.userType = userType;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -27,11 +27,11 @@ public enum TestUsers {
         return username;
     }
 
-    public UserStateConst getUsersStates() {
-        return usersStates;
+    public UserStateConst getUserState() {
+        return userState;
     }
 
-    public UserTypeConst getUsersTypes() {
-        return usersTypes;
+    public UserTypeConst getUserType() {
+        return userType;
     }
 }

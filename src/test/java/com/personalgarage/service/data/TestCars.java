@@ -1,20 +1,20 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.api.domain.cars.data.constants.FuelTypesConst;
+import com.personalgarage.service.api.domain.cars.data.constants.FuelTypeConst;
 
 public enum TestCars {
 
-    BMW_530D_2013("1", "1", "BMW", "535d", 2013, FuelTypesConst.DIESEL, "123456");
+    BMW_530D_2013(1L, 1L, "BMW", "535d", 2013, FuelTypeConst.DIESEL, "123456");
 
-    private final String id;
-    private final String userId;
+    private final Long id;
+    private final Long userId;
     private final String make;
     private final String model;
     private final Integer year;
-    private final FuelTypesConst fuelTypes;
+    private final FuelTypeConst fuelTypes;
     private final String licencePlate;
 
-    TestCars(String id, String userId, String make, String model, Integer year, FuelTypesConst fuelTypes, String licencePlate) {
+    TestCars(Long id, Long userId, String make, String model, Integer year, FuelTypeConst fuelTypes, String licencePlate) {
         this.id = id;
         this.userId = userId;
         this.make = make;
@@ -24,12 +24,20 @@ public enum TestCars {
         this.licencePlate = licencePlate;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
+    }
+
+    public FuelTypeConst getFuelTypes() {
+        return fuelTypes;
+    }
+
+    public String getLicencePlate() {
+        return licencePlate;
     }
 
     public String getMake() {
@@ -42,13 +50,5 @@ public enum TestCars {
 
     public Integer getYear() {
         return year;
-    }
-
-    public FuelTypesConst getFuelTypes() {
-        return fuelTypes;
-    }
-
-    public String getLicencePlate() {
-        return licencePlate;
     }
 }
