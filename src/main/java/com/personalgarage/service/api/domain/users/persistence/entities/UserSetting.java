@@ -1,5 +1,6 @@
 package com.personalgarage.service.api.domain.users.persistence.entities;
 
+import com.personalgarage.service.api.domain.users.data.constants.UserSettingTypeConst;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,9 @@ public class UserSetting {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_setting_id")
     private Long id;
+
+    @Column(name = "user_setting_type")
+    private UserSettingTypeConst userSettingType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

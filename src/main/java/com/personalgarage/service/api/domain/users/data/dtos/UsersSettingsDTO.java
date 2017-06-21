@@ -1,6 +1,6 @@
 package com.personalgarage.service.api.domain.users.data.dtos;
 
-import com.personalgarage.service.api.domain.users.data.constants.UsersSettingsTypesConst;
+import com.personalgarage.service.api.domain.users.data.constants.UserSettingTypeConst;
 import com.personalgarage.service.base.data.dto.BaseDTO;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
@@ -16,5 +16,5 @@ import javax.validation.constraints.NotNull;
 public class UsersSettingsDTO extends BaseDTO {
 
     @NotNull(message = "UsersSettingsTypes cannot be null", groups = { ActionInsert.class, ActionUpdate.class })
-    private UsersSettingsTypesConst usersSettingsTypes;
+    private UserSettingTypeConst usersSettingsTypes;
 }
