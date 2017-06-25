@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface IUserService {
 
-    UserDTO get(String id);
+    UserDTO get(Long id);
 
-    UserDTO insert(UserDTO usersDTO);
+    UserDTO insert(UserDTO userDTO);
 
-    UserDTO update(UserDTO usersDTO);
+    UserDTO update(UserDTO userDTO);
 }

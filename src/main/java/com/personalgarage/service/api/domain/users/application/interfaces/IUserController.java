@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public interface IUserController {
 
-    UserDTO get(String id);
+    UserDTO get(Long id);
 
-    UserDTO insert(UserDTO usersDTO);
+    UserDTO insert(UserDTO userDTO);
 
-    UserDTO update(UserDTO usersDTO);
+    UserDTO update(UserDTO userDTO);
 }
