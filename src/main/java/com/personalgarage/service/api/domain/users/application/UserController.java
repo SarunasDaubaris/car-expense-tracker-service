@@ -44,11 +44,4 @@ public class UserController extends BaseRestController implements IUserControlle
     public UserDTO update(@RequestBody @Validated({ActionUpdate.class}) UserDTO usersDTO) {
         return usersService.update(usersDTO);
     }
-
-    @Override
-    @DeleteMapping(value = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") @Validated @NotBlank String id) {
-        usersService.delete(id);
-    }
 }

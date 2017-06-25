@@ -11,6 +11,4 @@ public interface IUserService {
     UserDTO insert(UserDTO usersDTO);
 
     UserDTO update(UserDTO usersDTO);
-
-    void delete(String id);
 }

@@ -4,10 +4,11 @@ import com.personalgarage.service.api.domain.transactions.application.services.i
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
 import com.personalgarage.service.api.domain.transactions.persistence.entities.Transaction;
 import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionRepository;
+import com.personalgarage.service.base.application.services.BaseRestService;
 import com.personalgarage.service.common.DomainDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TransactionService implements ITransactionService {
+public class TransactionService extends BaseRestService implements ITransactionService {
 
     private final DomainDataMapper<TransactionDTO, Transaction> domainDataMapper = new DomainDataMapper<>();
 

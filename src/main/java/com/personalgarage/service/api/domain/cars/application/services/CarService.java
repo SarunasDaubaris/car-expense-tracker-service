@@ -4,12 +4,13 @@ import com.personalgarage.service.api.domain.cars.application.services.interface
 import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
 import com.personalgarage.service.api.domain.cars.persistence.entities.Car;
 import com.personalgarage.service.api.domain.cars.persistence.repositories.CarRepository;
+import com.personalgarage.service.base.application.services.BaseRestService;
 import com.personalgarage.service.common.DomainDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class CarService implements ICarService {
+public class CarService extends BaseRestService implements ICarService {
 
     private final DomainDataMapper<CarDTO, Car> domainDataMapper = new DomainDataMapper<>();
 
