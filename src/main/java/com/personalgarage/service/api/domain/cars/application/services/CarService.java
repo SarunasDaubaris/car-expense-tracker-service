@@ -34,11 +34,13 @@ public class CarService extends BaseRestService {
     }
 
     public CarDTO insert(CarDTO carDTO) {
-        return carServiceModelMapper.mapByClass(carRepository.save(carServiceModelMapper.mapByClass(carDTO, Car.class)), CarDTO.class);
+        Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
+        return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }
 
     public CarDTO update(CarDTO carDTO) {
-        return carServiceModelMapper.mapByClass(carRepository.save(carServiceModelMapper.mapByClass(carDTO, Car.class)), CarDTO.class);
+        Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
+        return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }
 
     public void delete(Long id) {

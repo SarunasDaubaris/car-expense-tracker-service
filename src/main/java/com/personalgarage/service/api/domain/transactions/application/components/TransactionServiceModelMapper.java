@@ -1,7 +1,7 @@
-package com.personalgarage.service.api.domain.cars.application.components;
+package com.personalgarage.service.api.domain.transactions.application.components;
 
-import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
-import com.personalgarage.service.api.domain.cars.persistence.entities.Car;
+import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
+import com.personalgarage.service.api.domain.transactions.persistence.entities.Transaction;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
@@ -13,14 +13,14 @@ import java.util.stream.Collectors;
 
 @Component
 @NoArgsConstructor
-public class CarServiceModelMapper {
+public class TransactionServiceModelMapper {
 
     private MapperFactory mapperFactory;
 
     @PostConstruct
     private void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
-        mapperFactory.classMap(Car.class, CarDTO.class)
+        mapperFactory.classMap(Transaction.class, TransactionDTO.class)
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

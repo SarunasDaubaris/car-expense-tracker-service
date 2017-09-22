@@ -33,7 +33,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.session:spring-session')
-	compile('org.modelmapper:modelmapper:1.1.0')
+	compile('ma.glasnost.orika:orika-core:1.5.1')
 	compile('org.projectlombok:lombok:1.16.12')
 	compile('com.fasterxml.jackson.core:jackson-databind:2.8.5')
 	compile('com.fasterxml.jackson.core:jackson-core:2.8.5')
