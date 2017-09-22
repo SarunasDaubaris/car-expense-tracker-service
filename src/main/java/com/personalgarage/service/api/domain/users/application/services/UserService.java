@@ -4,12 +4,11 @@ import com.personalgarage.service.api.domain.users.application.components.UserSe
 import com.personalgarage.service.api.domain.users.data.dtos.UserDTO;
 import com.personalgarage.service.api.domain.users.persistence.entities.User;
 import com.personalgarage.service.api.domain.users.persistence.repositories.UserRepository;
-import com.personalgarage.service.base.application.services.BaseRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService extends BaseRestService {
+public class UserService {
 
     private UserServiceModelMapper userServiceModelMapper;
     private UserRepository userRepository;

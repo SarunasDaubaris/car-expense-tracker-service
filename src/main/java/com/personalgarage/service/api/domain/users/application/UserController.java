@@ -2,7 +2,6 @@ package com.personalgarage.service.api.domain.users.application;
 
 import com.personalgarage.service.api.domain.users.application.services.UserService;
 import com.personalgarage.service.api.domain.users.data.dtos.UserDTO;
-import com.personalgarage.service.base.application.BaseRestController;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/users")
-public class UserController extends BaseRestController {
+public class UserController {
 
     private UserService userService;
 

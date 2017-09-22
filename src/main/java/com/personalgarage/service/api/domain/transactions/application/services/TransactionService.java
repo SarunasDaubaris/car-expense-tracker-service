@@ -4,12 +4,11 @@ import com.personalgarage.service.api.domain.transactions.application.components
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
 import com.personalgarage.service.api.domain.transactions.persistence.entities.Transaction;
 import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionRepository;
-import com.personalgarage.service.base.application.services.BaseRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TransactionService extends BaseRestService {
+public class TransactionService {
 
     private TransactionServiceModelMapper transactionServiceModelMapper;
     private TransactionRepository transactionRepository;

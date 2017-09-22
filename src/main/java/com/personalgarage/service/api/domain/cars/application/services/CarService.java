@@ -4,14 +4,13 @@ import com.personalgarage.service.api.domain.cars.application.components.CarServ
 import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
 import com.personalgarage.service.api.domain.cars.persistence.entities.Car;
 import com.personalgarage.service.api.domain.cars.persistence.repositories.CarRepository;
-import com.personalgarage.service.base.application.services.BaseRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CarService extends BaseRestService {
+public class CarService {
 
     private CarServiceModelMapper carServiceModelMapper;
     private CarRepository carRepository;
