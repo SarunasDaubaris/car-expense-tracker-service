@@ -32,7 +32,7 @@ public class TransactionController {
     }
 
     @PostMapping(produces = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public TransactionDTO insert(@RequestBody @Validated({ActionInsert.class}) TransactionDTO transactionDTO) {
         return transactionService.insert(transactionDTO);
     }
@@ -41,11 +41,5 @@ public class TransactionController {
     @ResponseStatus(HttpStatus.OK)
     public TransactionDTO update(@RequestBody @Validated({ActionUpdate.class}) TransactionDTO transactionDTO) {
         return transactionService.update(transactionDTO);
-    }
-
-    @DeleteMapping(value = "/{id}", produces = "application/json")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") @Validated @NotNull Long id) {
-        transactionService.delete(id);
     }
 }

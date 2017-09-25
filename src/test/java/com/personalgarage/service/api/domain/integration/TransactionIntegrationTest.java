@@ -76,7 +76,7 @@ public class TransactionIntegrationTest extends BaseTest {
         mockMvc.perform(post("/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertTransaction)))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())))
                 .andExpect(jsonPath("$.user.id", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())));
 
@@ -118,16 +118,6 @@ public class TransactionIntegrationTest extends BaseTest {
                 .andExpect(jsonPath("$.user.id", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())));
 
         verify(transactionsController, times(1)).update(updateTransaction);
-        verifyNoMoreInteractions(transactionsController);
-    }
-
-    @Test
-    @WithMockUser
-    public void givenValidDeleteTransactionIdReturnsNoContent() throws Exception {
-        mockMvc.perform(delete("/transactions/{id}", TestTransactions.FUEL_PURCHASE_1.getId()))
-                .andExpect(status().isNoContent());
-
-        verify(transactionsController, times(1)).delete(TestTransactions.FUEL_PURCHASE_1.getId());
         verifyNoMoreInteractions(transactionsController);
     }
 }

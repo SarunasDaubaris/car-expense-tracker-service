@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping(produces = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public UserDTO insert(@RequestBody @Validated({ActionInsert.class}) UserDTO userDTO) {
         return userService.insert(userDTO);
     }

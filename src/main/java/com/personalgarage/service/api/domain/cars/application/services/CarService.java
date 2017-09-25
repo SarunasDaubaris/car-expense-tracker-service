@@ -41,8 +41,4 @@ public class CarService {
         Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
         return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }
-
-    public void delete(Long id) {
-        carRepository.delete(id);
-    }
 }

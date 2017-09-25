@@ -39,7 +39,7 @@ public class CarController {
     }
 
     @PostMapping(produces = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public CarDTO insert(@RequestBody @Validated({ActionInsert.class}) CarDTO carsDTO) {
         return carService.insert(carsDTO);
     }
@@ -48,11 +48,5 @@ public class CarController {
     @ResponseStatus(HttpStatus.OK)
     public CarDTO update(@RequestBody @Validated({ActionUpdate.class}) CarDTO carsDTO) {
         return carService.update(carsDTO);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable("id") @Validated @NotNull Long id) {
-        carService.delete(id);
     }
 }

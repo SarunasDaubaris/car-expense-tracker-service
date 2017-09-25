@@ -102,7 +102,7 @@ public class CarIntegrationTest extends BaseTest {
         mockMvc.perform(post("/cars")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertCar)))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId().intValue())))
                 .andExpect(jsonPath("$.user.id", is(TestCars.BMW_530D_2013.getUserId().intValue())));
 
@@ -143,16 +143,6 @@ public class CarIntegrationTest extends BaseTest {
                 .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId().intValue())));
 
         verify(carsController, times(1)).update(updateCar);
-        verifyNoMoreInteractions(carsController);
-    }
-
-    @Test
-    @WithMockUser
-    public void givenValidDeleteCarIdReturnsNoContent() throws Exception {
-        mockMvc.perform(delete("/cars/{id}", TestCars.BMW_530D_2013.getId()))
-                .andExpect(status().isNoContent());
-
-        verify(carsController, times(1)).delete(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
     }
 }

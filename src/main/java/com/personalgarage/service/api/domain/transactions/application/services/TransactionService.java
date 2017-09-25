@@ -35,8 +35,4 @@ public class TransactionService {
         Transaction transaction = transactionServiceModelMapper.mapByClass(transactionDTO, Transaction.class);
         return transactionServiceModelMapper.mapByClass(transactionRepository.save(transaction), TransactionDTO.class);
     }
-
-    public void delete(Long id) {
-        transactionRepository.delete(id);
-    }
 }
