@@ -1,10 +1,11 @@
 package com.personalgarage.service.api.domain.cars.application;
 
-import com.personalgarage.service.api.domain.cars.application.services.CarService;
+import com.personalgarage.service.api.domain.cars.application.services.interfaces.ICarService;
 import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ import java.util.List;
 @RequestMapping("/cars")
 public class CarController {
 
-    private CarService carService;
+    private ICarService carService;
 
     public CarController() {
     }
 
     @Autowired
-    public CarController(CarService carService) {
+    public CarController(@Qualifier("carService") ICarService carService) {
         this.carService = carService;
     }
 

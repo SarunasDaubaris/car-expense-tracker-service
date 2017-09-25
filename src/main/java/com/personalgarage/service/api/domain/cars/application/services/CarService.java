@@ -1,6 +1,7 @@
 package com.personalgarage.service.api.domain.cars.application.services;
 
 import com.personalgarage.service.api.domain.cars.application.components.CarServiceModelMapper;
+import com.personalgarage.service.api.domain.cars.application.services.interfaces.ICarService;
 import com.personalgarage.service.api.domain.cars.data.dtos.CarDTO;
 import com.personalgarage.service.api.domain.cars.persistence.entities.Car;
 import com.personalgarage.service.api.domain.cars.persistence.repositories.CarRepository;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class CarService {
+@Service("carService")
+public class CarService implements ICarService {
 
     private CarServiceModelMapper carServiceModelMapper;
     private CarRepository carRepository;
@@ -24,19 +25,23 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    @Override
     public CarDTO get(Long id) {
         return carServiceModelMapper.mapByClass(carRepository.findOne(id), CarDTO.class);
     }
 
+    @Override
     public List<CarDTO> getAllByUser(Long userId) {
         return carServiceModelMapper.mapToListByClass(carRepository.findByUserId(userId), CarDTO.class);
     }
 
+    @Override
     public CarDTO insert(CarDTO carDTO) {
         Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
         return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }
 
+    @Override
     public CarDTO update(CarDTO carDTO) {
         Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
         return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);

@@ -1,14 +1,15 @@
 package com.personalgarage.service.api.domain.transactions.application.services;
 
 import com.personalgarage.service.api.domain.transactions.application.components.TransactionServiceModelMapper;
+import com.personalgarage.service.api.domain.transactions.application.services.interfaces.ITransactionService;
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
 import com.personalgarage.service.api.domain.transactions.persistence.entities.Transaction;
 import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class TransactionService {
+@Service("transactionService")
+public class TransactionService implements ITransactionService {
 
     private TransactionServiceModelMapper transactionServiceModelMapper;
     private TransactionRepository transactionRepository;
@@ -22,15 +23,18 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
+    @Override
     public TransactionDTO get(Long id) {
         return transactionServiceModelMapper.mapByClass(transactionRepository.findOne(id), TransactionDTO.class);
     }
 
+    @Override
     public TransactionDTO insert(TransactionDTO transactionDTO) {
         Transaction transaction = transactionServiceModelMapper.mapByClass(transactionDTO, Transaction.class);
         return transactionServiceModelMapper.mapByClass(transactionRepository.save(transaction), TransactionDTO.class);
     }
 
+    @Override
     public TransactionDTO update(TransactionDTO transactionDTO) {
         Transaction transaction = transactionServiceModelMapper.mapByClass(transactionDTO, Transaction.class);
         return transactionServiceModelMapper.mapByClass(transactionRepository.save(transaction), TransactionDTO.class);

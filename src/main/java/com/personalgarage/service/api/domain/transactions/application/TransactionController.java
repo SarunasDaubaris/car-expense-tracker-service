@@ -1,10 +1,11 @@
 package com.personalgarage.service.api.domain.transactions.application;
 
-import com.personalgarage.service.api.domain.transactions.application.services.TransactionService;
+import com.personalgarage.service.api.domain.transactions.application.services.interfaces.ITransactionService;
 import com.personalgarage.service.api.domain.transactions.data.dtos.TransactionDTO;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,13 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("/transactions")
 public class TransactionController {
 
-    private TransactionService transactionService;
+    private ITransactionService transactionService;
 
     public TransactionController() {
     }
 
     @Autowired
-    public TransactionController(TransactionService transactionService) {
+    public TransactionController(@Qualifier("transactionService") ITransactionService transactionService) {
         this.transactionService = transactionService;
     }
 
