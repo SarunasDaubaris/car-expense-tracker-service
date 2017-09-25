@@ -18,8 +18,8 @@ public class UserSettingDTO {
     @NotNull(message = "UserSettingsType cannot be null", groups = {ActionInsert.class, ActionUpdate.class})
     private UserSettingTypeConst usersSettingsTypes;
 
-    @NotNull(message = "User cannot be null", groups = {ActionInsert.class, ActionUpdate.class})
-    private UserDTO user;
+    @NotNull(message = "UserId cannot be null", groups = {ActionInsert.class, ActionUpdate.class})
+    private Long userId;
 
     @NotNull(message = "SettingKey cannot be null", groups = {ActionInsert.class, ActionUpdate.class})
     private String settingKey;

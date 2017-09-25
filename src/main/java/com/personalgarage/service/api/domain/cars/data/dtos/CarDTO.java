@@ -1,7 +1,6 @@
 package com.personalgarage.service.api.domain.cars.data.dtos;
 
 import com.personalgarage.service.api.domain.cars.data.constants.FuelTypeConst;
-import com.personalgarage.service.api.domain.users.data.dtos.UserDTO;
 import com.personalgarage.service.common.validation.groups.ActionInsert;
 import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import lombok.Data;
@@ -18,7 +17,7 @@ public class CarDTO {
     private Long id;
 
     @NotNull(message = "UserId cannot be blank", groups = {ActionInsert.class, ActionUpdate.class})
-    private UserDTO user;
+    private Long userId;
 
     @NotNull(message = "FuelType cannot be null", groups = {ActionInsert.class, ActionUpdate.class})
     private FuelTypeConst fuelType;

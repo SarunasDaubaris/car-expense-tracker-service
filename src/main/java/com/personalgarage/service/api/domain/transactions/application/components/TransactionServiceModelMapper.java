@@ -21,6 +21,8 @@ public class TransactionServiceModelMapper {
     private void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(Transaction.class, TransactionDTO.class)
+                .field("user.id", "userId")
+                .field("car.id", "carId")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()
