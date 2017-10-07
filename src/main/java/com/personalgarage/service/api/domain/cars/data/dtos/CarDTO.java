@@ -1,8 +1,8 @@
 package com.personalgarage.service.api.domain.cars.data.dtos;
 
 import com.personalgarage.service.api.domain.cars.data.constants.FuelTypeConst;
-import com.personalgarage.service.common.validation.groups.ActionInsert;
-import com.personalgarage.service.common.validation.groups.ActionUpdate;
+import com.personalgarage.service.api.common.validation.groups.ActionInsert;
+import com.personalgarage.service.api.common.validation.groups.ActionUpdate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
