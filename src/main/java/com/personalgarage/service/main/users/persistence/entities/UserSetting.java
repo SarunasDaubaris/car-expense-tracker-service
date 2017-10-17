@@ -1,6 +1,6 @@
 package com.personalgarage.service.main.users.persistence.entities;
 
-import com.personalgarage.service.main.users.data.constants.UserSettingTypeConst;
+import com.personalgarage.service.interfaces.main.users.constants.UserSettingTypeConst;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

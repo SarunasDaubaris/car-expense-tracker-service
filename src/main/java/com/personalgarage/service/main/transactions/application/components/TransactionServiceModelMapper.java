@@ -1,6 +1,6 @@
 package com.personalgarage.service.main.transactions.application.components;
 
-import com.personalgarage.service.main.transactions.data.dtos.TransactionDTO;
+import com.personalgarage.service.interfaces.main.transactions.dtos.TransactionDTO;
 import com.personalgarage.service.main.transactions.persistence.entities.Transaction;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;

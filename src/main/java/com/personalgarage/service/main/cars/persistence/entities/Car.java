@@ -1,6 +1,6 @@
 package com.personalgarage.service.main.cars.persistence.entities;
 
-import com.personalgarage.service.main.cars.data.constants.FuelTypeConst;
+import com.personalgarage.service.interfaces.main.cars.constants.FuelTypeConst;
 import com.personalgarage.service.main.users.persistence.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;

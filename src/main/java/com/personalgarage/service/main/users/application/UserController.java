@@ -1,9 +1,9 @@
 package com.personalgarage.service.main.users.application;
 
+import com.personalgarage.service.interfaces.common.validation.groups.ActionInsert;
+import com.personalgarage.service.interfaces.common.validation.groups.ActionUpdate;
+import com.personalgarage.service.interfaces.main.users.dtos.UserDTO;
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
-import com.personalgarage.service.main.users.data.dtos.UserDTO;
-import com.personalgarage.service.common.validation.groups.ActionInsert;
-import com.personalgarage.service.common.validation.groups.ActionUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

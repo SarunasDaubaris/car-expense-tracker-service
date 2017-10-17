@@ -1,6 +1,6 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.main.transactions.data.constants.TransactionTypeConst;
+import com.personalgarage.service.interfaces.main.transactions.constants.TransactionTypeConst;
 
 import java.math.BigDecimal;
 

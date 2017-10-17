@@ -1,6 +1,6 @@
 package com.personalgarage.service.main.users.application.services.interfaces;
 
-import com.personalgarage.service.main.users.data.dtos.UserDTO;
+import com.personalgarage.service.interfaces.main.users.dtos.UserDTO;
 
 public interface IUserService {
     UserDTO get(Long id);

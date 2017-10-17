@@ -1,11 +1,11 @@
 package com.personalgarage.service.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.main.cars.application.CarController;
-import com.personalgarage.service.main.cars.data.dtos.CarDTO;
 import com.personalgarage.service.base.BaseTest;
 import com.personalgarage.service.data.TestCars;
 import com.personalgarage.service.data.TestUsers;
+import com.personalgarage.service.interfaces.main.cars.dtos.CarDTO;
+import com.personalgarage.service.main.cars.application.CarController;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

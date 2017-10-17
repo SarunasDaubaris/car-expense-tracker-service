@@ -1,7 +1,7 @@
 package com.personalgarage.service.main.users.application.components;
 
-import com.personalgarage.service.main.users.data.dtos.UserDTO;
-import com.personalgarage.service.main.users.data.dtos.UserSettingDTO;
+import com.personalgarage.service.interfaces.main.users.dtos.UserDTO;
+import com.personalgarage.service.interfaces.main.users.dtos.UserSettingDTO;
 import com.personalgarage.service.main.users.persistence.entities.User;
 import com.personalgarage.service.main.users.persistence.entities.UserSetting;
 import lombok.NoArgsConstructor;

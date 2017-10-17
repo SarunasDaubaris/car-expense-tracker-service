@@ -1,8 +1,8 @@
 package com.personalgarage.service.main.users.application.services;
 
+import com.personalgarage.service.interfaces.main.users.dtos.UserDTO;
 import com.personalgarage.service.main.users.application.components.UserServiceModelMapper;
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
-import com.personalgarage.service.main.users.data.dtos.UserDTO;
 import com.personalgarage.service.main.users.persistence.entities.User;
 import com.personalgarage.service.main.users.persistence.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

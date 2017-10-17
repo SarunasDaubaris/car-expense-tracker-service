@@ -1,8 +1,8 @@
 package com.personalgarage.service.integration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.personalgarage.service.interfaces.main.transactions.dtos.TransactionDTO;
 import com.personalgarage.service.main.transactions.application.TransactionController;
-import com.personalgarage.service.main.transactions.data.dtos.TransactionDTO;
 import com.personalgarage.service.base.BaseTest;
 import com.personalgarage.service.data.TestTransactions;
 import org.junit.Test;
