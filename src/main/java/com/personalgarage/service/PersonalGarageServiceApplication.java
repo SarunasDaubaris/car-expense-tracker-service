@@ -1,9 +1,9 @@
 package com.personalgarage.service;
 
-import com.personalgarage.service.api.domain.cars.persistence.repositories.CarRepository;
-import com.personalgarage.service.api.domain.transactions.persistence.repositories.TransactionRepository;
-import com.personalgarage.service.api.domain.users.persistence.repositories.UserRepository;
-import com.personalgarage.service.api.domain.users.persistence.repositories.UserSettingsRepository;
+import com.personalgarage.service.main.cars.persistence.repositories.CarRepository;
+import com.personalgarage.service.main.transactions.persistence.repositories.TransactionRepository;
+import com.personalgarage.service.main.users.persistence.repositories.UserRepository;
+import com.personalgarage.service.main.users.persistence.repositories.UserSettingsRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

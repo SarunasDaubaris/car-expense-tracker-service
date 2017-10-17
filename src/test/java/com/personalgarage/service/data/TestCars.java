@@ -1,6 +1,6 @@
 package com.personalgarage.service.data;
 
-import com.personalgarage.service.api.domain.cars.data.constants.FuelTypeConst;
+import com.personalgarage.service.main.cars.data.constants.FuelTypeConst;
 
 public enum TestCars {
 
