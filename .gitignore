@@ -45,6 +45,7 @@ Icon
 .gradle/
 build/
 classes/
+!gradle/wrapper/gradle-wrapper.jar
 
 
 ### Eclipse ###
