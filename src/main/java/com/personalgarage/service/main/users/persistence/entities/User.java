@@ -24,6 +24,9 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "user_state")
     @Enumerated(EnumType.ORDINAL)
     private UserStateConst userState;
