@@ -20,7 +20,7 @@ public class UserSetting {
     private Long id;
 
     @Column(name = "user_setting_type")
-    private UserSettingTypeConst userSettingType;
+    private Short userSettingTypeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -31,4 +31,12 @@ public class UserSetting {
 
     @Column(name = "setting_value")
     private String settingValue;
+
+    public UserSettingTypeConst getUserSettingType() {
+        return UserSettingTypeConst.forId(userSettingTypeId);
+    }
+
+    public void setUserSettingType(UserSettingTypeConst userSettingType) {
+        this.userSettingTypeId = userSettingType.getId();
+    }
 }

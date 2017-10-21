@@ -1,7 +1,7 @@
 package com.personalgarage.service.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.interfaces.main.users.dtos.UserDTO;
+import com.personalgarage.service.interfaces.main.users.dtos.UserCredentialsDTO;
 import com.personalgarage.service.security.SecurityConstants;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,7 +30,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-            UserDTO userDTO = new ObjectMapper().readValue(request.getInputStream(), UserDTO.class);
+            UserCredentialsDTO userDTO = new ObjectMapper().readValue(request.getInputStream(), UserCredentialsDTO.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword(), new ArrayList<>()));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -40,7 +40,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
-                .setSubject(((UserDTO) authResult.getPrincipal()).getUsername())
+                .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET.getBytes())
                 .compact();

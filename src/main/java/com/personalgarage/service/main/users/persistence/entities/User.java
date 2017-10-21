@@ -28,13 +28,27 @@ public class User {
     private String password;
 
     @Column(name = "user_state")
-    @Enumerated(EnumType.ORDINAL)
-    private UserStateConst userState;
+    private Short userStateId;
 
     @Column(name = "user_type")
-    @Enumerated(EnumType.ORDINAL)
-    private UserTypeConst userType;
+    private Short userTypeId;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserSetting> userSettings;
+
+    public UserTypeConst getUserType() {
+        return UserTypeConst.forId(userTypeId);
+    }
+
+    public void setUserType(UserTypeConst userType) {
+        this.userTypeId = userType.getId();
+    }
+
+    public UserStateConst getUserState() {
+        return UserStateConst.forId(userStateId);
+    }
+
+    public void setUserState(UserStateConst userState) {
+        this.userStateId = userState.getId();
+    }
 }

@@ -1,13 +1,14 @@
 package com.personalgarage.service.main.users.application;
 
+import com.personalgarage.service.interfaces.main.users.dtos.UserCredentialsDTO;
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping("/users")
@@ -23,15 +24,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/register", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public String register() {
-        return "trying to register";
-    }
-
-    @PostMapping(value = "/login")
-    @ResponseStatus(HttpStatus.OK)
-    public String login() {
-        return "trying to login";
+    public Long registerUser(@RequestBody @Validated @NotNull UserCredentialsDTO userCredentialsDTO) {
+        return this.userService.registerUser(userCredentialsDTO);
     }
 }

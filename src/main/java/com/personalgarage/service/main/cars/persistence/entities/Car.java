@@ -23,8 +23,7 @@ public class Car {
     private User user;
 
     @Column(name = "fuel_type")
-    @Enumerated(EnumType.ORDINAL)
-    private FuelTypeConst fuelType;
+    private Short fuelTypeId;
 
     @Column(name = "licence_plate")
     private String licencePlate;
@@ -37,4 +36,12 @@ public class Car {
 
     @Column(name = "manufacture_year")
     private Integer manufactureYear;
+
+    public FuelTypeConst getFuelType() {
+        return FuelTypeConst.forId(fuelTypeId);
+    }
+
+    public void setFuelType(FuelTypeConst fuelType) {
+        this.fuelTypeId = fuelType.getId();
+    }
 }

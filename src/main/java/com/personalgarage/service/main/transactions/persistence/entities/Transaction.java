@@ -30,8 +30,7 @@ public class Transaction {
     private User user;
 
     @Column(name = "transaction_type")
-    @Enumerated(EnumType.ORDINAL)
-    private TransactionTypeConst transactionType;
+    private Short transactionTypeId;
 
     @Column(name = "created_time")
     private DateTime createdTime;
@@ -44,4 +43,12 @@ public class Transaction {
 
     @Column(name = "description")
     private String description;
+
+    public TransactionTypeConst getTransactionType() {
+        return TransactionTypeConst.forId(transactionTypeId);
+    }
+
+    public void setTransactionType(TransactionTypeConst transactionType) {
+        this.transactionTypeId = transactionType.getId();
+    }
 }
