@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.4.RELEASE'
+		springBootVersion = '1.5.8.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -43,7 +43,7 @@ dependencies {
 	compile('com.fasterxml.jackson.core:jackson-databind:2.9.2')
 	compile('com.fasterxml.jackson.core:jackson-core:2.9.2')
 	compile('com.fasterxml.jackson.core:jackson-annotations:2.9.2')
-	testCompile('org.springframework.boot:spring-boot-starter-test:1.4.3.RELEASE')
+	testCompile('org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE')
 	testCompile('org.springframework.security:spring-security-test:4.2.0.RELEASE')
 }
 
