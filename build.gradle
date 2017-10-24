@@ -31,7 +31,6 @@ repositories {
 
 dependencies {
 	compile('com.personalgarage.service:personal-garage-service-interfaces:0.0.1-SNAPSHOT')
-	compile('com.personalgarage.service:personal-garage-service-security:0.0.1-SNAPSHOT')
 	compile("io.jsonwebtoken:jjwt:0.7.0")
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-security')
