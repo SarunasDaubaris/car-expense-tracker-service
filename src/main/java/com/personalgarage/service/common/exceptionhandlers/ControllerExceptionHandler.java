@@ -1,4 +1,4 @@
-package com.personalgarage.service.common.exception;
+package com.personalgarage.service.common.exceptionhandlers;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
