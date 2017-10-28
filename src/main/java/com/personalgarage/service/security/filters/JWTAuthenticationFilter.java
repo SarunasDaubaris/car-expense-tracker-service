@@ -2,7 +2,7 @@ package com.personalgarage.service.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.interfaces.main.users.dtos.UserCredentialsDTO;
-import com.personalgarage.service.security.application.SecurityParameters;
+import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurationParams;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,9 +41,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
                 .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + SecurityParameters.EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SecurityParameters.SECRET.getBytes())
+                .setExpiration(new Date(System.currentTimeMillis() + ApplicationSecurityConfigurationParams.EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, ApplicationSecurityConfigurationParams.SECRET.getBytes())
                 .compact();
-        response.addHeader(SecurityParameters.HEADER_STRING, SecurityParameters.TOKEN_PREFIX + token);
+        response.addHeader(ApplicationSecurityConfigurationParams.HEADER_STRING, ApplicationSecurityConfigurationParams.TOKEN_PREFIX + token);
     }
 }

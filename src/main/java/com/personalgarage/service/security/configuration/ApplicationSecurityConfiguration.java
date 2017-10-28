@@ -1,4 +1,4 @@
-package com.personalgarage.service.security.application;
+package com.personalgarage.service.security.configuration;
 
 import com.personalgarage.service.security.filters.JWTAuthenticationFilter;
 import com.personalgarage.service.security.filters.JWTAuthorizationFilter;

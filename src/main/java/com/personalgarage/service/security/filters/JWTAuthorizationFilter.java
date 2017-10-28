@@ -1,6 +1,6 @@
 package com.personalgarage.service.security.filters;
 
-import com.personalgarage.service.security.application.SecurityParameters;
+import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurationParams;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,9 +23,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String header = request.getHeader(SecurityParameters.HEADER_STRING);
+        String header = request.getHeader(ApplicationSecurityConfigurationParams.HEADER_STRING);
 
-        if (header == null || !header.startsWith(SecurityParameters.TOKEN_PREFIX)) {
+        if (header == null || !header.startsWith(ApplicationSecurityConfigurationParams.TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
@@ -37,11 +37,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(SecurityParameters.HEADER_STRING);
+        String token = request.getHeader(ApplicationSecurityConfigurationParams.HEADER_STRING);
         if (token != null) {
             String user = Jwts.parser()
-                    .setSigningKey(SecurityParameters.SECRET.getBytes())
-                    .parseClaimsJws(token.replace(SecurityParameters.TOKEN_PREFIX, ""))
+                    .setSigningKey(ApplicationSecurityConfigurationParams.SECRET.getBytes())
+                    .parseClaimsJws(token.replace(ApplicationSecurityConfigurationParams.TOKEN_PREFIX, ""))
                     .getBody()
                     .getSubject();
 
