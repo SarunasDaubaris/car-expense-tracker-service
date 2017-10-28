@@ -1,6 +1,7 @@
 package com.personalgarage.service.main.cars.application.services.interfaces;
 
-import com.personalgarage.service.interfaces.main.cars.dtos.CarDTO;
+import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
+
 import java.util.List;
 
 public interface ICarService {

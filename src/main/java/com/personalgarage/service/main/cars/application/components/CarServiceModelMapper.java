@@ -1,6 +1,6 @@
 package com.personalgarage.service.main.cars.application.components;
 
-import com.personalgarage.service.interfaces.main.cars.dtos.CarDTO;
+import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
 import com.personalgarage.service.main.cars.persistence.entities.Car;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;

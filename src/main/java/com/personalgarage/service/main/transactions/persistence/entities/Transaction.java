@@ -1,7 +1,7 @@
 package com.personalgarage.service.main.transactions.persistence.entities;
 
-import com.personalgarage.service.interfaces.main.transactions.constants.TransactionTypeConst;
 import com.personalgarage.service.main.cars.persistence.entities.Car;
+import com.personalgarage.service.main.transactions.interfaces.constants.TransactionTypeConst;
 import com.personalgarage.service.main.users.persistence.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,9 +34,6 @@ public class Transaction {
 
     @Column(name = "created_time")
     private DateTime createdTime;
-
-    @Column(name = "last_update_time")
-    private DateTime lastUpdateTime;
 
     @Column(name = "amount")
     private BigDecimal amount;

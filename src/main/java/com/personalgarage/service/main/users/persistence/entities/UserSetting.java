@@ -1,15 +1,13 @@
 package com.personalgarage.service.main.users.persistence.entities;
 
-import com.personalgarage.service.interfaces.main.users.constants.UserSettingTypeConst;
+import com.personalgarage.service.main.users.interfaces.constants.UserSettingTypeConst;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 @Table(name = "user_settings")
 public class UserSetting {

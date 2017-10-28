@@ -1,9 +1,7 @@
 package com.personalgarage.service.main.cars.application;
 
-import com.personalgarage.service.interfaces.common.validation.groups.ActionInsert;
-import com.personalgarage.service.interfaces.common.validation.groups.ActionUpdate;
-import com.personalgarage.service.interfaces.main.cars.dtos.CarDTO;
 import com.personalgarage.service.main.cars.application.services.interfaces.ICarService;
+import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -41,13 +39,13 @@ public class CarController {
 
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CarDTO insert(@RequestBody @Validated({ActionInsert.class}) CarDTO carsDTO) {
-        return carService.insert(carsDTO);
+    public CarDTO insert(@RequestBody @Validated CarDTO carDTO) {
+        return carService.insert(carDTO);
     }
 
     @PutMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public CarDTO update(@RequestBody @Validated({ActionUpdate.class}) CarDTO carsDTO) {
-        return carService.update(carsDTO);
+    public CarDTO update(@RequestBody @Validated CarDTO carDTO) {
+        return carService.update(carDTO);
     }
 }

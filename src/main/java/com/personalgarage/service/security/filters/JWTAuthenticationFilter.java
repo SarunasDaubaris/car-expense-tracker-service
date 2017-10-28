@@ -1,7 +1,7 @@
 package com.personalgarage.service.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalgarage.service.interfaces.main.users.dtos.UserCredentialsDTO;
+import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
 import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

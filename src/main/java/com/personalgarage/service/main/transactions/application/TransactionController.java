@@ -1,9 +1,7 @@
 package com.personalgarage.service.main.transactions.application;
 
-import com.personalgarage.service.interfaces.common.validation.groups.ActionInsert;
-import com.personalgarage.service.interfaces.common.validation.groups.ActionUpdate;
-import com.personalgarage.service.interfaces.main.transactions.dtos.TransactionDTO;
 import com.personalgarage.service.main.transactions.application.services.interfaces.ITransactionService;
+import com.personalgarage.service.main.transactions.interfaces.dtos.TransactionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -34,13 +32,13 @@ public class TransactionController {
 
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO insert(@RequestBody @Validated({ActionInsert.class}) TransactionDTO transactionDTO) {
+    public TransactionDTO insert(@RequestBody @Validated TransactionDTO transactionDTO) {
         return transactionService.insert(transactionDTO);
     }
 
     @PutMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO update(@RequestBody @Validated({ActionUpdate.class}) TransactionDTO transactionDTO) {
+    public TransactionDTO update(@RequestBody @Validated TransactionDTO transactionDTO) {
         return transactionService.update(transactionDTO);
     }
 }

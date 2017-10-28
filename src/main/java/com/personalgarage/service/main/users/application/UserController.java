@@ -1,7 +1,7 @@
 package com.personalgarage.service.main.users.application;
 
-import com.personalgarage.service.interfaces.main.users.dtos.UserCredentialsDTO;
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
+import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

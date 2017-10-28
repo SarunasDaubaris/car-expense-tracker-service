@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS TRANSACTIONS (
   user_id BIGINT NOT NULL,
   transaction_type SMALLINT NOT NULL,
   created_time VARCHAR (255),
-  last_update_time VARCHAR (255),
   amount NUMERIC (25, 4) NOT NULL,
   description VARCHAR (255),
 

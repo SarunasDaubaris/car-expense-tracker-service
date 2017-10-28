@@ -1,8 +1,8 @@
 package com.personalgarage.service.main.cars.application.services;
 
-import com.personalgarage.service.interfaces.main.cars.dtos.CarDTO;
 import com.personalgarage.service.main.cars.application.components.CarServiceModelMapper;
 import com.personalgarage.service.main.cars.application.services.interfaces.ICarService;
+import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
 import com.personalgarage.service.main.cars.persistence.entities.Car;
 import com.personalgarage.service.main.cars.persistence.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;

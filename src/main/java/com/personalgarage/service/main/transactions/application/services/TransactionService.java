@@ -1,8 +1,8 @@
 package com.personalgarage.service.main.transactions.application.services;
 
-import com.personalgarage.service.interfaces.main.transactions.dtos.TransactionDTO;
 import com.personalgarage.service.main.transactions.application.components.TransactionServiceModelMapper;
 import com.personalgarage.service.main.transactions.application.services.interfaces.ITransactionService;
+import com.personalgarage.service.main.transactions.interfaces.dtos.TransactionDTO;
 import com.personalgarage.service.main.transactions.persistence.entities.Transaction;
 import com.personalgarage.service.main.transactions.persistence.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
