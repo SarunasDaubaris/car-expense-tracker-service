@@ -29,8 +29,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {ApplicationServiceException.class})
     public ResponseEntity<Object> handleApplicationServiceException(RuntimeException ex, WebRequest request) {
         ApplicationServiceException applicationServiceException = (ApplicationServiceException) ex;
-        String bodyOfResponse = applicationServiceException.getErrorData().getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse,
+//        String bodyOfResponse = applicationServiceException.getErrorData().getMessage();
+        return handleExceptionInternal(ex, applicationServiceException.getErrorData(),
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

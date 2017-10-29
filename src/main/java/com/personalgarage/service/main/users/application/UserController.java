@@ -5,6 +5,7 @@ import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +25,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/register", produces = "application/json")
+    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Long registerUser(@RequestBody @NotNull(message = "UserCredentialsDTO cannot be null") UserCredentialsDTO userCredentialsDTO) {
+    public Long registerUser(@RequestBody @Validated @NotNull UserCredentialsDTO userCredentialsDTO) {
         return this.userService.registerUser(userCredentialsDTO);
     }
 }

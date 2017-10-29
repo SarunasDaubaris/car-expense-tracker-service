@@ -2,9 +2,9 @@ package com.personalgarage.service.common.exceptions;
 
 public enum ErrorCodeBases {
 
-    CARS(1000),
-    TRANSACTIONS(2000),
-    USERS(3000);
+    CARS(10000),
+    TRANSACTIONS(20000),
+    USERS(30000);
 
     private final Integer codeBase;
 
