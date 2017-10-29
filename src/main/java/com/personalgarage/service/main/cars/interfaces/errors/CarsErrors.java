@@ -1,7 +1,7 @@
 package com.personalgarage.service.main.cars.interfaces.errors;
 
-import com.personalgarage.service.common.exception.serviceexception.ErrorCodeBases;
-import com.personalgarage.service.common.exception.serviceexception.ErrorData;
+import com.personalgarage.service.common.exceptions.ErrorCodeBases;
+import com.personalgarage.service.common.exceptions.ErrorData;
 import lombok.Getter;
 
 @Getter
