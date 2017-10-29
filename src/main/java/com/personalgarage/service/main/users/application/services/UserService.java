@@ -39,7 +39,7 @@ public class UserService implements IUserService {
         if (StringUtils.isBlank(userCredentialsDTO.getPassword())) {
             throw new ApplicationServiceException(UsersErrors.PASSWORD_EMPTY);
         }
-        if (this.userRepository.findByUsername(userCredentialsDTO.getUsername()) != null) {
+        if (this.userRepository.existsByUsername(userCredentialsDTO.getUsername())) {
             throw new ApplicationServiceException(UsersErrors.USERNAME_EXISTS);
         }
 
