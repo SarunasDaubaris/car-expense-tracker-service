@@ -40,7 +40,7 @@ public class UserService implements IUserService {
             throw new ApplicationServiceException(UsersErrors.PASSWORD_EMPTY);
         }
         if (this.userRepository.existsByUsername(userCredentialsDTO.getUsername())) {
-            throw new ApplicationServiceException(UsersErrors.USERNAME_EXISTS);
+            throw new ApplicationServiceException(UsersErrors.USERNAME_TAKEN);
         }
 
         ApplicationUser user = new ApplicationUser();
