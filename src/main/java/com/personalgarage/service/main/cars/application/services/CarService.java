@@ -26,23 +26,17 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public CarDTO get(Long id) {
+    public CarDTO getByCarId(Long id) {
         return carServiceModelMapper.mapByClass(carRepository.findOne(id), CarDTO.class);
     }
 
     @Override
-    public List<CarDTO> getAllByUser(Long userId) {
+    public List<CarDTO> getAllCarsByUserId(Long userId) {
         return carServiceModelMapper.mapToListByClass(carRepository.findByUserId(userId), CarDTO.class);
     }
 
     @Override
-    public CarDTO insert(CarDTO carDTO) {
-        Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
-        return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
-    }
-
-    @Override
-    public CarDTO update(CarDTO carDTO) {
+    public CarDTO createCar(CarDTO carDTO) {
         Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
         return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }

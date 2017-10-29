@@ -20,7 +20,8 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,13 +40,13 @@ public class CarIntegrationTest extends BaseTest {
     public void givenValidCarIdReturnsCarDTO() throws Exception {
         CarDTO car = new CarDTO();
         car.setId(TestCars.BMW_530D_2013.getId());
-        when(carsController.get(TestCars.BMW_530D_2013.getId())).thenReturn(car);
+        when(carsController.getByCarId(TestCars.BMW_530D_2013.getId())).thenReturn(car);
 
         mockMvc.perform(get("/cars/{id}", TestCars.BMW_530D_2013.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", equalTo(TestCars.BMW_530D_2013.getId().intValue())));
 
-        verify(carsController, times(1)).get(TestCars.BMW_530D_2013.getId());
+        verify(carsController, times(1)).getByCarId(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
     }
 
@@ -57,7 +58,7 @@ public class CarIntegrationTest extends BaseTest {
         car.setUserId(TestCars.BMW_530D_2013.getUserId());
         List<CarDTO> userCars = new ArrayList<>();
         userCars.add(car);
-        when(carsController.getAllByUserId(TestUsers.USER_1.getId())).thenReturn(userCars);
+        when(carsController.getAllCarsByUserId(TestUsers.USER_1.getId())).thenReturn(userCars);
 
         mockMvc.perform(get("/cars/users/{userId}", TestUsers.USER_1.getId()))
                 .andExpect(status().isOk())
@@ -65,7 +66,7 @@ public class CarIntegrationTest extends BaseTest {
                 .andExpect(jsonPath("$.[0].id", is(TestCars.BMW_530D_2013.getId().intValue())))
                 .andExpect(jsonPath("$.[0].userId", is(TestCars.BMW_530D_2013.getUserId().intValue())));
 
-        verify(carsController, times(1)).getAllByUserId(TestUsers.USER_1.getId());
+        verify(carsController, times(1)).getAllCarsByUserId(TestUsers.USER_1.getId());
         verifyNoMoreInteractions(carsController);
     }
 
@@ -90,7 +91,7 @@ public class CarIntegrationTest extends BaseTest {
         resultCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
         resultCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
 
-        when(carsController.insert(insertCar)).thenReturn(resultCar);
+        when(carsController.createCar(insertCar)).thenReturn(resultCar);
 
         mockMvc.perform(post("/cars")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -99,40 +100,7 @@ public class CarIntegrationTest extends BaseTest {
                 .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId().intValue())))
                 .andExpect(jsonPath("$.userId", is(TestCars.BMW_530D_2013.getUserId().intValue())));
 
-        verify(carsController, times(1)).insert(insertCar);
-        verifyNoMoreInteractions(carsController);
-    }
-
-    @Test
-    @WithMockUser
-    public void givenValidCarDTOReturnsUpdatedCarDTO() throws Exception {
-        CarDTO updateCar = new CarDTO();
-        updateCar.setId(TestCars.BMW_530D_2013.getId());
-        updateCar.setUserId(TestCars.BMW_530D_2013.getUserId());
-        updateCar.setMake(TestCars.BMW_530D_2013.getMake());
-        updateCar.setModel(TestCars.BMW_530D_2013.getModel());
-        updateCar.setManufactureYear(TestCars.BMW_530D_2013.getYear());
-        updateCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
-        updateCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
-
-        CarDTO resultCar = new CarDTO();
-        resultCar.setId(TestCars.BMW_530D_2013.getId());
-        resultCar.setUserId(TestCars.BMW_530D_2013.getUserId());
-        resultCar.setMake(TestCars.BMW_530D_2013.getMake());
-        resultCar.setModel(TestCars.BMW_530D_2013.getModel());
-        resultCar.setManufactureYear(TestCars.BMW_530D_2013.getYear());
-        resultCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
-        resultCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
-
-        when(carsController.update(updateCar)).thenReturn(resultCar);
-
-        mockMvc.perform(put("/cars")
-                .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(new ObjectMapper().writer().writeValueAsBytes(updateCar)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId().intValue())));
-
-        verify(carsController, times(1)).update(updateCar);
+        verify(carsController, times(1)).createCar(insertCar);
         verifyNoMoreInteractions(carsController);
     }
 }

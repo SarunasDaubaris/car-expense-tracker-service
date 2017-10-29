@@ -5,11 +5,10 @@ import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
 import java.util.List;
 
 public interface ICarService {
-    CarDTO get(Long id);
 
-    List<CarDTO> getAllByUser(Long userId);
+    CarDTO getByCarId(Long id);
 
-    CarDTO insert(CarDTO carDTO);
+    List<CarDTO> getAllCarsByUserId(Long userId);
 
-    CarDTO update(CarDTO carDTO);
+    CarDTO createCar(CarDTO carDTO);
 }

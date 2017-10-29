@@ -5,6 +5,7 @@ import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,27 +26,21 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public CarDTO get(@PathVariable("id") @Validated @NotNull Long id) {
-        return carService.get(id);
+    public CarDTO getByCarId(@PathVariable("id") @Validated @NotNull Long id) {
+        return carService.getByCarId(id);
     }
 
-    @GetMapping(value = "/users/{userId}", produces = "application/json")
+    @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<CarDTO> getAllByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
-        return carService.getAllByUser(userId);
+    public List<CarDTO> getAllCarsByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
+        return carService.getAllCarsByUserId(userId);
     }
 
-    @PostMapping(produces = "application/json")
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public CarDTO insert(@RequestBody @Validated CarDTO carDTO) {
-        return carService.insert(carDTO);
-    }
-
-    @PutMapping(produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public CarDTO update(@RequestBody @Validated CarDTO carDTO) {
-        return carService.update(carDTO);
+    public CarDTO createCar(@RequestBody @Validated @NotNull CarDTO carDTO) {
+        return carService.createCar(carDTO);
     }
 }
