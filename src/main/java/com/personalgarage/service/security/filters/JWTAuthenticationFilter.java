@@ -2,7 +2,6 @@ package com.personalgarage.service.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
-import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+
+import static com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -41,9 +42,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
                 .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + ApplicationSecurityConfigurerParams.EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, ApplicationSecurityConfigurerParams.SECRET.getBytes())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
                 .compact();
-        response.addHeader(ApplicationSecurityConfigurerParams.HEADER_STRING, ApplicationSecurityConfigurerParams.TOKEN_PREFIX + token);
+        response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
     }
 }
