@@ -2,7 +2,7 @@ package com.personalgarage.service.main.users.application.components;
 
 import com.personalgarage.service.main.users.interfaces.dtos.UserDTO;
 import com.personalgarage.service.main.users.interfaces.dtos.UserSettingDTO;
-import com.personalgarage.service.main.users.persistence.entities.User;
+import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import com.personalgarage.service.main.users.persistence.entities.UserSetting;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;
@@ -22,7 +22,7 @@ public class UserServiceModelMapper {
     @PostConstruct
     private void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
-        mapperFactory.classMap(User.class, UserDTO.class)
+        mapperFactory.classMap(ApplicationUser.class, UserDTO.class)
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

@@ -1,5 +1,6 @@
 package com.personalgarage.service.security.application;
 
+import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import com.personalgarage.service.main.users.persistence.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,7 +22,7 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.personalgarage.service.main.users.persistence.entities.User user = this.userRepository.findByUsername(username);
+        ApplicationUser user = this.userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

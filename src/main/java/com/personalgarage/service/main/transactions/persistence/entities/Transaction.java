@@ -2,7 +2,7 @@ package com.personalgarage.service.main.transactions.persistence.entities;
 
 import com.personalgarage.service.main.cars.persistence.entities.Car;
 import com.personalgarage.service.main.transactions.interfaces.constants.TransactionTypeConst;
-import com.personalgarage.service.main.users.persistence.entities.User;
+import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
@@ -27,7 +27,7 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private ApplicationUser user;
 
     @Column(name = "transaction_type")
     private Short transactionTypeId;

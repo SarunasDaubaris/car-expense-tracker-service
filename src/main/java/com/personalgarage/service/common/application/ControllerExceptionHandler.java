@@ -1,5 +1,6 @@
 package com.personalgarage.service.common.application;
 
+import com.personalgarage.service.common.exceptions.ApplicationServiceException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,14 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {IllegalArgumentException.class})
     public ResponseEntity<Object> handleIllegalArgumentException(RuntimeException ex, WebRequest request) {
         String bodyOfResponse = "Incorrect arguments provided";
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = {ApplicationServiceException.class})
+    public ResponseEntity<Object> handleApplicationServiceException(RuntimeException ex, WebRequest request) {
+        ApplicationServiceException applicationServiceException = (ApplicationServiceException) ex;
+        String bodyOfResponse = applicationServiceException.getErrorData().getMessage();
         return handleExceptionInternal(ex, bodyOfResponse,
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }

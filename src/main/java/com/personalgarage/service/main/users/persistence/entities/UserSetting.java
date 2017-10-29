@@ -22,7 +22,7 @@ public class UserSetting {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private User user;
+    private ApplicationUser user;
 
     @Column(name = "setting_key")
     private String settingKey;

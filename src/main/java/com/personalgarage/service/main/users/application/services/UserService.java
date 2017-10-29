@@ -1,11 +1,15 @@
 package com.personalgarage.service.main.users.application.services;
 
+import com.personalgarage.service.common.exceptions.ApplicationServiceException;
 import com.personalgarage.service.main.users.application.components.UserServiceModelMapper;
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
 import com.personalgarage.service.main.users.interfaces.constants.UserStateConst;
 import com.personalgarage.service.main.users.interfaces.constants.UserTypeConst;
 import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
+import com.personalgarage.service.main.users.interfaces.errors.UsersErrors;
+import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import com.personalgarage.service.main.users.persistence.repositories.UserRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,26 +32,25 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Long registerUser(UserCredentialsDTO userCredentialsDTO) {
+    public Long registerUser(UserCredentialsDTO userCredentialsDTO) throws ApplicationServiceException {
+        if (StringUtils.isBlank(userCredentialsDTO.getUsername())) {
+            throw new ApplicationServiceException(UsersErrors.USERNAME_EMPTY);
+        }
+        if (StringUtils.isBlank(userCredentialsDTO.getPassword())) {
+            throw new ApplicationServiceException(UsersErrors.PASSWORD_EMPTY);
+        }
         if (this.userRepository.findByUsername(userCredentialsDTO.getUsername()) != null) {
-            throw new IllegalArgumentException("Username is already taken");
+            throw new ApplicationServiceException(UsersErrors.USERNAME_EXISTS);
         }
 
-        com.personalgarage.service.main.users.persistence.entities.User user = createNewUser(userCredentialsDTO);
-        this.userRepository.save(user);
-
-        return user.getId();
-    }
-
-    private com.personalgarage.service.main.users.persistence.entities.User createNewUser(UserCredentialsDTO userCredentialsDTO) {
-        com.personalgarage.service.main.users.persistence.entities.User user =
-                new com.personalgarage.service.main.users.persistence.entities.User();
-
+        ApplicationUser user = new ApplicationUser();
         user.setUsername(userCredentialsDTO.getUsername());
         user.setPassword(this.bCryptPasswordEncoder.encode(userCredentialsDTO.getPassword()));
         user.setUserState(UserStateConst.NEW);
         user.setUserType(UserTypeConst.BASIC);
 
-        return user;
+        this.userRepository.save(user);
+
+        return user.getId();
     }
 }

@@ -43,6 +43,7 @@ dependencies {
     compile('ma.glasnost.orika:orika-core:1.5.1')
     compile('org.projectlombok:lombok:1.16.12')
     compile("joda-time:joda-time:2.9.9")
+    compile("org.apache.commons:commons-lang3:3.6")
     testCompile('org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE')
     testCompile('org.springframework.security:spring-security-test:4.2.0.RELEASE')
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @EqualsAndHashCode
 @Entity
 @Table(name = "users")
-public class User {
+public class ApplicationUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

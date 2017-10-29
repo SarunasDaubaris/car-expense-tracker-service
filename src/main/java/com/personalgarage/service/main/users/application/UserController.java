@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping(value = "/register", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public Long registerUser(@RequestBody @Validated @NotNull UserCredentialsDTO userCredentialsDTO) {
+    public Long registerUser(@RequestBody @NotNull(message = "UserCredentialsDTO cannot be null") UserCredentialsDTO userCredentialsDTO) {
         return this.userService.registerUser(userCredentialsDTO);
     }
 }

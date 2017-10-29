@@ -1,7 +1,7 @@
 package com.personalgarage.service.main.cars.persistence.entities;
 
 import com.personalgarage.service.main.cars.interfaces.constants.FuelTypeConst;
-import com.personalgarage.service.main.users.persistence.entities.User;
+import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,7 +20,7 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private ApplicationUser user;
 
     @Column(name = "fuel_type")
     private Short fuelTypeId;
