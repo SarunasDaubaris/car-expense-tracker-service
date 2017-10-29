@@ -38,6 +38,7 @@ dependencies {
     compile('com.fasterxml.jackson.core:jackson-core:2.9.2')
     compile('com.fasterxml.jackson.core:jackson-annotations:2.9.2')
     compile("io.jsonwebtoken:jjwt:0.7.0")
+    compile("org.jadira.usertype:usertype.core:5.0.0.GA")
     compile('org.postgresql:postgresql:9.4.1211.jre7')
     compile("org.flywaydb:flyway-core:4.1.2")
     compile('ma.glasnost.orika:orika-core:1.5.1')

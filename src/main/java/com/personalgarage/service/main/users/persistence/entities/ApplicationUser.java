@@ -5,6 +5,9 @@ import com.personalgarage.service.main.users.interfaces.constants.UserTypeConst;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,6 +29,12 @@ public class ApplicationUser {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "created_date")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime",
+            parameters = {@Parameter(name = "databaseZone", value = "UTC"),
+                    @Parameter(name = "javaZone", value = "UTC")})
+    private DateTime createDate;
 
     @Column(name = "user_state")
     private Short userStateId;

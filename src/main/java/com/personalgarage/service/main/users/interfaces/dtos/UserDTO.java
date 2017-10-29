@@ -1,10 +1,13 @@
 package com.personalgarage.service.main.users.interfaces.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.personalgarage.service.common.components.JacksonJodaDateTimeSerializer;
 import com.personalgarage.service.main.users.interfaces.constants.UserStateConst;
 import com.personalgarage.service.main.users.interfaces.constants.UserTypeConst;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -20,6 +23,10 @@ public class UserDTO {
 
     @JsonProperty(value = "password", access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+    @JsonProperty(value = "createdDate", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonSerialize(using = JacksonJodaDateTimeSerializer.class)
+    private DateTime createdDate;
 
     @JsonProperty("userState")
     private UserStateConst userState;
