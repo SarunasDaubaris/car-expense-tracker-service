@@ -10,6 +10,8 @@ import com.personalgarage.service.main.users.interfaces.errors.UsersErrors;
 import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import com.personalgarage.service.main.users.persistence.repositories.UserRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -46,6 +48,7 @@ public class UserService implements IUserService {
         ApplicationUser user = new ApplicationUser();
         user.setUsername(userCredentialsDTO.getUsername());
         user.setPassword(this.bCryptPasswordEncoder.encode(userCredentialsDTO.getPassword()));
+        user.setCreateDate(DateTime.now(DateTimeZone.UTC));
         user.setUserState(UserStateConst.NEW);
         user.setUserType(UserTypeConst.BASIC);
 
