@@ -40,13 +40,13 @@ public class CarIntegrationTest extends BaseTest {
     public void givenValidCarIdReturnsCarDTO() throws Exception {
         CarDTO car = new CarDTO();
         car.setId(TestCars.BMW_530D_2013.getId());
-        when(carsController.getByCarId(TestCars.BMW_530D_2013.getId())).thenReturn(car);
+        when(carsController.getCarById(TestCars.BMW_530D_2013.getId())).thenReturn(car);
 
         mockMvc.perform(get("/cars/{id}", TestCars.BMW_530D_2013.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", equalTo(TestCars.BMW_530D_2013.getId().intValue())));
 
-        verify(carsController, times(1)).getByCarId(TestCars.BMW_530D_2013.getId());
+        verify(carsController, times(1)).getCarById(TestCars.BMW_530D_2013.getId());
         verifyNoMoreInteractions(carsController);
     }
 

@@ -16,7 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,13 +36,13 @@ public class TransactionIntegrationTest extends BaseTest {
     public void givenValidTransactionIdReturnsTransactionDTO() throws Exception {
         TransactionDTO transaction = new TransactionDTO();
         transaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        when(transactionsController.get(TestTransactions.FUEL_PURCHASE_1.getId())).thenReturn(transaction);
+        when(transactionsController.getTransactionById(TestTransactions.FUEL_PURCHASE_1.getId())).thenReturn(transaction);
 
         mockMvc.perform(get("/transactions/{id}", TestTransactions.FUEL_PURCHASE_1.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())));
 
-        verify(transactionsController, times(1)).get(TestTransactions.FUEL_PURCHASE_1.getId());
+        verify(transactionsController, times(1)).getTransactionById(TestTransactions.FUEL_PURCHASE_1.getId());
         verifyNoMoreInteractions(transactionsController);
     }
 
@@ -64,7 +65,7 @@ public class TransactionIntegrationTest extends BaseTest {
         resultTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         resultTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
-        when(transactionsController.insert(insertTransaction)).thenReturn(resultTransaction);
+        when(transactionsController.createTransaction(insertTransaction)).thenReturn(resultTransaction);
 
         mockMvc.perform(post("/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -74,40 +75,7 @@ public class TransactionIntegrationTest extends BaseTest {
                 .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())))
                 .andExpect(jsonPath("$.carId", is(TestTransactions.FUEL_PURCHASE_1.getCarId().intValue())));
 
-        verify(transactionsController, times(1)).insert(insertTransaction);
-        verifyNoMoreInteractions(transactionsController);
-    }
-
-    @Test
-    @WithMockUser
-    public void givenValidTransactionDTOReturnsUpdatedTransactionDTO() throws Exception {
-        TransactionDTO updateTransaction = new TransactionDTO();
-        updateTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        updateTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        updateTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        updateTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        updateTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
-        updateTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
-
-        TransactionDTO resultTransaction = new TransactionDTO();
-        resultTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        resultTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        resultTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        resultTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        resultTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
-        resultTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
-
-        when(transactionsController.update(updateTransaction)).thenReturn(resultTransaction);
-
-        mockMvc.perform(put("/transactions")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writer().writeValueAsBytes(updateTransaction)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())))
-                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())))
-                .andExpect(jsonPath("$.carId", is(TestTransactions.FUEL_PURCHASE_1.getCarId().intValue())));
-
-        verify(transactionsController, times(1)).update(updateTransaction);
+        verify(transactionsController, times(1)).createTransaction(insertTransaction);
         verifyNoMoreInteractions(transactionsController);
     }
 }
