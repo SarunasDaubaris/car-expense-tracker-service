@@ -1,5 +1,6 @@
 package com.personalgarage.service.security.filters;
 
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,13 +31,18 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
 
-        UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
+        UsernamePasswordAuthenticationToken authentication = null;
+        try {
+            authentication = getAuthentication(request);
+        } catch (JwtException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(request, response);
     }
 
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) throws JwtException, IllegalArgumentException {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {
             String user = Jwts.parser()
