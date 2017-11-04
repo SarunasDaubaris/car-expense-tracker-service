@@ -5,6 +5,7 @@ import com.personalgarage.service.main.transactions.interfaces.constants.Transac
 import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -32,8 +33,11 @@ public class Transaction {
     @Column(name = "transaction_type")
     private Short transactionTypeId;
 
-    @Column(name = "created_time")
-    private DateTime createdTime;
+    @Column(name = "created_date")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime",
+            parameters = {@org.hibernate.annotations.Parameter(name = "databaseZone", value = "UTC"),
+                    @org.hibernate.annotations.Parameter(name = "javaZone", value = "UTC")})
+    private DateTime createdDate;
 
     @Column(name = "amount")
     private BigDecimal amount;

@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @RestController
 @RequestMapping("/transactions")
@@ -24,21 +25,21 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping(value = "/{id}", produces = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO get(@PathVariable("id") @Validated @NotNull Long id) {
-        return transactionService.get(id);
-    }
-
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO insert(@RequestBody @Validated TransactionDTO transactionDTO) {
-        return transactionService.insert(transactionDTO);
+    public TransactionDTO createTransaction(@RequestBody @Validated @NotNull TransactionDTO transactionDTO) {
+        return transactionService.createTransaction(transactionDTO);
     }
 
-    @PutMapping(produces = "application/json")
+    @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO update(@RequestBody @Validated TransactionDTO transactionDTO) {
-        return transactionService.update(transactionDTO);
+    public TransactionDTO getTransactionById(@PathVariable("id") @Validated @NotNull Long id) {
+        return transactionService.getTransactionById(id);
+    }
+
+    @GetMapping(value = "/cars/{carId}", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<TransactionDTO> getAllTransactionsByCarId(@PathVariable("carId") @Validated @NotNull Long id) {
+        return transactionService.getAllTransactionsByCarId(id);
     }
 }

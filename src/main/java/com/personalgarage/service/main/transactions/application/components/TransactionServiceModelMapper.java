@@ -23,6 +23,7 @@ public class TransactionServiceModelMapper {
         mapperFactory.classMap(Transaction.class, TransactionDTO.class)
                 .field("user.id", "userId")
                 .field("car.id", "carId")
+                .exclude("createdDate")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

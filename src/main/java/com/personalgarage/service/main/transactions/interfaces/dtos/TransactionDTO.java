@@ -1,6 +1,10 @@
 package com.personalgarage.service.main.transactions.interfaces.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.personalgarage.service.common.components.JacksonJodaDateTimeDeserializer;
+import com.personalgarage.service.common.components.JacksonJodaDateTimeSerializer;
 import com.personalgarage.service.main.transactions.interfaces.constants.TransactionTypeConst;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +28,9 @@ public class TransactionDTO {
     @JsonProperty("transactionType")
     private TransactionTypeConst transactionType;
 
-    @JsonProperty("createdTime")
-    private DateTime createdTime;
+    @JsonProperty(value = "createdDate", access = JsonProperty.Access.READ_ONLY)
+    @JsonDeserialize(using = JacksonJodaDateTimeDeserializer.class)
+    private DateTime createdDate;
 
     @JsonProperty("amount")
     private BigDecimal amount;

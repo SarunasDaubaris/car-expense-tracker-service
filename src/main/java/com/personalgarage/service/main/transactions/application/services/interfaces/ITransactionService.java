@@ -2,10 +2,12 @@ package com.personalgarage.service.main.transactions.application.services.interf
 
 import com.personalgarage.service.main.transactions.interfaces.dtos.TransactionDTO;
 
+import java.util.List;
+
 public interface ITransactionService {
-    TransactionDTO get(Long id);
+    TransactionDTO createTransaction(TransactionDTO transactionDTO);
 
-    TransactionDTO insert(TransactionDTO transactionDTO);
+    TransactionDTO getTransactionById(Long id);
 
-    TransactionDTO update(TransactionDTO transactionDTO);
+    List<TransactionDTO> getAllTransactionsByCarId(Long id);
 }

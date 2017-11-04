@@ -8,6 +8,8 @@ import com.personalgarage.service.main.cars.interfaces.errors.CarsErrors;
 import com.personalgarage.service.main.cars.persistence.entities.Car;
 import com.personalgarage.service.main.cars.persistence.repositories.CarRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,7 @@ public class CarService implements ICarService {
         }
 
         Car car = carServiceModelMapper.mapByClass(carDTO, Car.class);
+        car.setCreatedDate(DateTime.now(DateTimeZone.UTC));
         return carServiceModelMapper.mapByClass(carRepository.save(car), CarDTO.class);
     }
 
@@ -59,7 +62,7 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public List<CarDTO> getAllByUserId(Long userId) {
+    public List<CarDTO> getAllCarsByUserId(Long userId) {
         return carServiceModelMapper.mapToListByClass(carRepository.findByUserId(userId), CarDTO.class);
     }
 }

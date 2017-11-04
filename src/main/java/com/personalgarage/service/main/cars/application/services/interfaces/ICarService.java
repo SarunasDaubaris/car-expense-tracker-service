@@ -10,5 +10,5 @@ public interface ICarService {
 
     CarDTO getCarById(Long id);
 
-    List<CarDTO> getAllByUserId(Long userId);
+    List<CarDTO> getAllCarsByUserId(Long userId);
 }

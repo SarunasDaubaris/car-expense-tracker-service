@@ -4,6 +4,8 @@ import com.personalgarage.service.main.cars.interfaces.constants.FuelTypeConst;
 import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
@@ -21,6 +23,12 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private ApplicationUser user;
+
+    @Column(name = "created_date")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime",
+            parameters = {@org.hibernate.annotations.Parameter(name = "databaseZone", value = "UTC"),
+                    @org.hibernate.annotations.Parameter(name = "javaZone", value = "UTC")})
+    private DateTime createdDate;
 
     @Column(name = "fuel_type")
     private Short fuelTypeId;

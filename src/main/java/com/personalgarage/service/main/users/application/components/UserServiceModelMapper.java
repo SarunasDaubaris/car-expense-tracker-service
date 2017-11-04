@@ -23,6 +23,7 @@ public class UserServiceModelMapper {
     private void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(ApplicationUser.class, UserDTO.class)
+                .exclude("createdDate")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

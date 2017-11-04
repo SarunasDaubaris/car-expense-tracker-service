@@ -48,7 +48,7 @@ public class UserService implements IUserService {
         ApplicationUser user = new ApplicationUser();
         user.setUsername(userCredentialsDTO.getUsername());
         user.setPassword(this.bCryptPasswordEncoder.encode(userCredentialsDTO.getPassword()));
-        user.setCreateDate(DateTime.now(DateTimeZone.UTC));
+        user.setCreatedDate(DateTime.now(DateTimeZone.UTC));
         user.setUserState(UserStateConst.NEW);
         user.setUserType(UserTypeConst.BASIC);
 

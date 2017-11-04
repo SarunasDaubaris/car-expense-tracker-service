@@ -22,6 +22,7 @@ public class CarServiceModelMapper {
         mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(Car.class, CarDTO.class)
                 .field("user.id", "userId")
+                .exclude("createdDate")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

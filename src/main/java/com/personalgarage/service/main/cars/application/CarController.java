@@ -40,7 +40,7 @@ public class CarController {
 
     @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public List<CarDTO> getAllByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
-        return carService.getAllByUserId(userId);
+    public List<CarDTO> getAllCarsByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
+        return carService.getAllCarsByUserId(userId);
     }
 }

@@ -34,7 +34,7 @@ public class ApplicationUser {
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime",
             parameters = {@Parameter(name = "databaseZone", value = "UTC"),
                     @Parameter(name = "javaZone", value = "UTC")})
-    private DateTime createDate;
+    private DateTime createdDate;
 
     @Column(name = "user_state")
     private Short userStateId;
