@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface ICarService {
 
-    CarDTO getByCarId(Long id);
-
-    List<CarDTO> getAllCarsByUserId(Long userId);
-
     CarDTO createCar(CarDTO carDTO);
+
+    CarDTO getCarById(Long id);
+
+    List<CarDTO> getAllByUserId(Long userId);
 }

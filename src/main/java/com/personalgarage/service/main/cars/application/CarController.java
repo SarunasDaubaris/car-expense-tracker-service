@@ -26,21 +26,21 @@ public class CarController {
         this.carService = carService;
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public CarDTO getByCarId(@PathVariable("id") @Validated @NotNull Long id) {
-        return carService.getByCarId(id);
-    }
-
-    @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public List<CarDTO> getAllCarsByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
-        return carService.getAllCarsByUserId(userId);
-    }
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public CarDTO createCar(@RequestBody @Validated @NotNull CarDTO carDTO) {
         return carService.createCar(carDTO);
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public CarDTO getCarById(@PathVariable("id") @Validated @NotNull Long id) {
+        return carService.getCarById(id);
+    }
+
+    @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<CarDTO> getAllByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
+        return carService.getAllByUserId(userId);
     }
 }
