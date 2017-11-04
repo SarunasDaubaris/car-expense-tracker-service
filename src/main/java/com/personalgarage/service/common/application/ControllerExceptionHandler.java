@@ -1,6 +1,7 @@
 package com.personalgarage.service.common.application;
 
 import com.personalgarage.service.common.exceptions.ApplicationServiceException;
+import com.personalgarage.service.common.interfaces.ApplicationErrors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,22 +15,17 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<Object> handleNullPointerException(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Resource not found";
-        return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, ApplicationErrors.INTERNAL_ERROR, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
     public ResponseEntity<Object> handleIllegalArgumentException(RuntimeException ex, WebRequest request) {
-        String bodyOfResponse = "Incorrect arguments provided";
-        return handleExceptionInternal(ex, bodyOfResponse,
-                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, ApplicationErrors.INCORRECT_ARGUMENTS, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(value = {ApplicationServiceException.class})
     public ResponseEntity<Object> handleApplicationServiceException(RuntimeException ex, WebRequest request) {
         ApplicationServiceException applicationServiceException = (ApplicationServiceException) ex;
-        return handleExceptionInternal(ex, applicationServiceException.getErrorData(),
-                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, applicationServiceException.getErrorData(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

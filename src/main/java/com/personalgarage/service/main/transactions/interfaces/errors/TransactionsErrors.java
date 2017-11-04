@@ -1,4 +1,7 @@
 package com.personalgarage.service.main.transactions.interfaces.errors;
 
-public class TransactionsErrors {
+public final class TransactionsErrors {
+
+    private TransactionsErrors() {
+    }
 }

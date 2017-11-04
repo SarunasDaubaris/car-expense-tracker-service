@@ -6,23 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ErrorData {
 
     @JsonIgnore
-    private ErrorCodeBases codeBase;
-
-    @JsonIgnore
     private final Integer code;
 
     @JsonIgnore
     private final String message;
 
-    public ErrorData(ErrorCodeBases codeBase, Integer code, String message) {
-        this.codeBase = codeBase;
-        this.code = code;
+    public ErrorData(ErrorCodeBases codeBase, Integer codeNumber, String message) {
+        this.code = codeBase.getCodeBase() + codeNumber;
         this.message = message;
     }
 
     @JsonProperty("code")
     public Integer getCode() {
-        return codeBase.getCodeBase() + code;
+        return code;
     }
 
     @JsonProperty("message")
