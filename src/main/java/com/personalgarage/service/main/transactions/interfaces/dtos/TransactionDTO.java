@@ -2,9 +2,7 @@ package com.personalgarage.service.main.transactions.interfaces.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.personalgarage.service.common.components.JacksonJodaDateTimeDeserializer;
-import com.personalgarage.service.common.components.JacksonJodaDateTimeSerializer;
 import com.personalgarage.service.main.transactions.interfaces.constants.TransactionTypeConst;
 import lombok.Data;
 import lombok.NoArgsConstructor;

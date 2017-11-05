@@ -18,7 +18,7 @@ public class CarServiceModelMapper {
     private MapperFactory mapperFactory;
 
     @PostConstruct
-    private void configure() {
+    public void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(Car.class, CarDTO.class)
                 .field("user.id", "userId")

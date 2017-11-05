@@ -18,7 +18,7 @@ public class TransactionServiceModelMapper {
     private MapperFactory mapperFactory;
 
     @PostConstruct
-    private void configure() {
+    public void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
         mapperFactory.classMap(Transaction.class, TransactionDTO.class)
                 .field("user.id", "userId")
