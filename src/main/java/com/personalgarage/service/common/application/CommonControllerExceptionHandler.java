@@ -1,7 +1,7 @@
 package com.personalgarage.service.common.application;
 
 import com.personalgarage.service.common.exceptions.ApplicationServiceException;
-import com.personalgarage.service.common.interfaces.ApplicationErrors;
+import com.personalgarage.service.common.interfaces.errors.ApplicationErrors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
+public class CommonControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<Object> handleNullPointerException(RuntimeException ex, WebRequest request) {
@@ -26,6 +26,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {ApplicationServiceException.class})
     public ResponseEntity<Object> handleApplicationServiceException(RuntimeException ex, WebRequest request) {
         ApplicationServiceException applicationServiceException = (ApplicationServiceException) ex;
-        return handleExceptionInternal(ex, applicationServiceException.getErrorData(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(ex, applicationServiceException.getExceptionData(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

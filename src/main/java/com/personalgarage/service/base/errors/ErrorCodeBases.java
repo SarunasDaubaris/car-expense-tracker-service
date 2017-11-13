@@ -1,4 +1,4 @@
-package com.personalgarage.service.common.exceptions;
+package com.personalgarage.service.base.errors;
 
 public enum ErrorCodeBases {
 

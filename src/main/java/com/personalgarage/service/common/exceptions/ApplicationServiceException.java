@@ -2,14 +2,14 @@ package com.personalgarage.service.common.exceptions;
 
 public class ApplicationServiceException extends RuntimeException {
 
-    private final ErrorData errorData;
+    private final ExceptionData errorData;
 
-    public ApplicationServiceException(ErrorData errorData) {
+    public ApplicationServiceException(ExceptionData errorData) {
         super();
         this.errorData = errorData;
     }
 
-    public ErrorData getErrorData() {
+    public ExceptionData getExceptionData() {
         return errorData;
     }
 }

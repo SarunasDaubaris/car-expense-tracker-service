@@ -1,14 +1,12 @@
 package com.personalgarage.service.main.cars.application.services.interfaces;
 
-import com.personalgarage.service.main.cars.interfaces.dtos.CarDTO;
-
-import java.util.List;
+import com.personalgarage.service.main.cars.interfaces.messages.*;
 
 public interface ICarService {
 
-    CarDTO createCar(CarDTO carDTO);
+    CreateCarResponse createCar(CreateCarRequest request);
 
-    CarDTO getCarById(Long id);
+    GetCarByIdResponse getCarById(GetCarByIdRequest request);
 
-    List<CarDTO> getAllCarsByUserId(Long userId);
+    GetAllCarsByUserIdResponse getAllCarsByUserId(GetAllCarsByUserIdRequest request);
 }

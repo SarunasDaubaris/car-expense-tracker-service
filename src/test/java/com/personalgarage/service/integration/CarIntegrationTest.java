@@ -72,7 +72,7 @@ public class CarIntegrationTest extends BaseTest {
 
     @Test
     @WithMockUser
-    public void givenValidCarDTOReturnsInsertedCarDTO() throws Exception {
+    public void givenValidCarDTOReturnsInsertedCarDTOId() throws Exception {
         CarDTO insertCar = new CarDTO();
         insertCar.setId(null);
         insertCar.setUserId(TestCars.BMW_530D_2013.getUserId());
@@ -91,14 +91,13 @@ public class CarIntegrationTest extends BaseTest {
         resultCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
         resultCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
 
-        when(carsController.createCar(insertCar)).thenReturn(resultCar);
+        when(carsController.createCar(insertCar)).thenReturn(TestCars.BMW_530D_2013.getId());
 
         mockMvc.perform(post("/cars")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertCar)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestCars.BMW_530D_2013.getId().intValue())))
-                .andExpect(jsonPath("$.userId", is(TestCars.BMW_530D_2013.getUserId().intValue())));
+                .andExpect(jsonPath("$", is(TestCars.BMW_530D_2013.getId().intValue())));
 
         verify(carsController, times(1)).createCar(insertCar);
         verifyNoMoreInteractions(carsController);

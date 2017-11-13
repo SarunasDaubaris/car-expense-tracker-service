@@ -3,7 +3,7 @@ package com.personalgarage.service.common.components;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.personalgarage.service.common.interfaces.DefaultApplicationDateTimeFormat;
+import com.personalgarage.service.common.interfaces.constants.CommonDateTimeFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class JacksonJodaDateTimeDeserializer extends StdDeserializer<DateTime> {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern(DefaultApplicationDateTimeFormat.DATE_FORMAT);
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormat.forPattern(CommonDateTimeFormat.DATE_FORMAT);
 
     public JacksonJodaDateTimeDeserializer() {
         this(null);
