@@ -2,9 +2,10 @@ package com.personalgarage.service.main.users.application.services.interfaces;
 
 
 import com.personalgarage.service.common.exceptions.ApplicationServiceException;
-import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
+import com.personalgarage.service.main.users.interfaces.messages.RegisterUserRequest;
+import com.personalgarage.service.main.users.interfaces.messages.RegisterUserResponse;
 
 public interface IUserService {
 
-    Long registerUser(UserCredentialsDTO userCredentialsDTO) throws ApplicationServiceException;
+    RegisterUserResponse registerUser(RegisterUserRequest request) throws ApplicationServiceException;
 }

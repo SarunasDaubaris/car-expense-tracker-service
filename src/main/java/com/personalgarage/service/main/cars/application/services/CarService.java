@@ -1,6 +1,7 @@
 package com.personalgarage.service.main.cars.application.services;
 
 import com.personalgarage.service.base.application.ServiceTaskCreator;
+import com.personalgarage.service.common.exceptions.ApplicationServiceException;
 import com.personalgarage.service.main.cars.application.services.interfaces.ICarService;
 import com.personalgarage.service.main.cars.application.tasks.CreateCarTask;
 import com.personalgarage.service.main.cars.application.tasks.GetAllCarsByUserIdTask;
@@ -20,17 +21,17 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public CreateCarResponse createCar(CreateCarRequest request) {
+    public CreateCarResponse createCar(CreateCarRequest request) throws ApplicationServiceException {
         return serviceTaskCreator.createTask(CreateCarTask.class).processInTransaction(request);
     }
 
     @Override
-    public GetCarByIdResponse getCarById(GetCarByIdRequest request) {
+    public GetCarByIdResponse getCarById(GetCarByIdRequest request) throws ApplicationServiceException {
         return serviceTaskCreator.createTask(GetCarByIdTask.class).processInTransaction(request);
     }
 
     @Override
-    public GetAllCarsByUserIdResponse getAllCarsByUserId(GetAllCarsByUserIdRequest request) {
+    public GetAllCarsByUserIdResponse getAllCarsByUserId(GetAllCarsByUserIdRequest request) throws ApplicationServiceException {
         return serviceTaskCreator.createTask(GetAllCarsByUserIdTask.class).processInTransaction(request);
     }
 }

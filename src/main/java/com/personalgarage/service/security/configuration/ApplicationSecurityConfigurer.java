@@ -20,12 +20,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public ApplicationSecurityConfigurer(UserDetailsService userDetailsService) {
+    public ApplicationSecurityConfigurer(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        super();
         this.userDetailsService = userDetailsService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override

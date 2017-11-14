@@ -2,6 +2,8 @@ package com.personalgarage.service.main.users.application;
 
 import com.personalgarage.service.main.users.application.services.interfaces.IUserService;
 import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
+import com.personalgarage.service.main.users.interfaces.messages.RegisterUserRequest;
+import com.personalgarage.service.main.users.interfaces.messages.RegisterUserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,9 @@ public class UserController {
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Long registerUser(@RequestBody @Validated @NotNull UserCredentialsDTO userCredentialsDTO) {
-        return this.userService.registerUser(userCredentialsDTO);
+        RegisterUserRequest request = new RegisterUserRequest();
+        request.userCredentialsDTO = userCredentialsDTO;
+        RegisterUserResponse response = userService.registerUser(request);
+        return response.userId;
     }
 }
