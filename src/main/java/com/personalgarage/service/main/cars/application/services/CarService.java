@@ -31,6 +31,6 @@ public class CarService implements ICarService {
 
     @Override
     public GetAllCarsByUserIdResponse getAllCarsByUserId(GetAllCarsByUserIdRequest request) {
-        return serviceTaskCreator.createTask(GetAllCarsByUserIdTask.class).processInNewTransaction(request);
+        return serviceTaskCreator.createTask(GetAllCarsByUserIdTask.class).processInTransaction(request);
     }
 }
