@@ -15,7 +15,7 @@ public class CommonControllerExceptionHandler extends ResponseEntityExceptionHan
 
     @ExceptionHandler(value = {NullPointerException.class})
     public ResponseEntity<Object> handleNullPointerException(RuntimeException ex, WebRequest request) {
-        return handleExceptionInternal(ex, ApplicationErrors.INTERNAL_ERROR, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+        return handleExceptionInternal(ex, ApplicationErrors.INTERNAL_ERROR, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
