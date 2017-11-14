@@ -82,15 +82,6 @@ public class CarIntegrationTest extends BaseTest {
         insertCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
         insertCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
 
-        CarDTO resultCar = new CarDTO();
-        resultCar.setId(TestCars.BMW_530D_2013.getId());
-        resultCar.setUserId(TestCars.BMW_530D_2013.getUserId());
-        resultCar.setMake(TestCars.BMW_530D_2013.getMake());
-        resultCar.setModel(TestCars.BMW_530D_2013.getModel());
-        resultCar.setManufactureYear(TestCars.BMW_530D_2013.getYear());
-        resultCar.setFuelType(TestCars.BMW_530D_2013.getFuelTypes());
-        resultCar.setLicencePlate(TestCars.BMW_530D_2013.getLicencePlate());
-
         when(carsController.createCar(insertCar)).thenReturn(TestCars.BMW_530D_2013.getId());
 
         mockMvc.perform(post("/cars")

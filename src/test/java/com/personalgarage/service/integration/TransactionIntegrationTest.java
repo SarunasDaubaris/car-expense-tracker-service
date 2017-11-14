@@ -57,23 +57,13 @@ public class TransactionIntegrationTest extends BaseTest {
         insertTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
         insertTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
 
-        TransactionDTO resultTransaction = new TransactionDTO();
-        resultTransaction.setId(TestTransactions.FUEL_PURCHASE_1.getId());
-        resultTransaction.setUserId(TestTransactions.FUEL_PURCHASE_1.getUserId());
-        resultTransaction.setCarId(TestTransactions.FUEL_PURCHASE_1.getCarId());
-        resultTransaction.setTransactionType(TestTransactions.FUEL_PURCHASE_1.getTransactionsTypes());
-        resultTransaction.setAmount(TestTransactions.FUEL_PURCHASE_1.getAmount());
-        resultTransaction.setDescription(TestTransactions.FUEL_PURCHASE_1.getDescription());
-
-        when(transactionsController.createTransaction(insertTransaction)).thenReturn(resultTransaction);
+        when(transactionsController.createTransaction(insertTransaction)).thenReturn(TestTransactions.FUEL_PURCHASE_1.getId());
 
         mockMvc.perform(post("/transactions")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writer().writeValueAsBytes(insertTransaction)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())))
-                .andExpect(jsonPath("$.userId", is(TestTransactions.FUEL_PURCHASE_1.getUserId().intValue())))
-                .andExpect(jsonPath("$.carId", is(TestTransactions.FUEL_PURCHASE_1.getCarId().intValue())));
+                .andExpect(jsonPath("$", is(TestTransactions.FUEL_PURCHASE_1.getId().intValue())));
 
         verify(transactionsController, times(1)).createTransaction(insertTransaction);
         verifyNoMoreInteractions(transactionsController);

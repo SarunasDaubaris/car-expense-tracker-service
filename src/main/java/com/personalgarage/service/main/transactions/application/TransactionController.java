@@ -2,6 +2,7 @@ package com.personalgarage.service.main.transactions.application;
 
 import com.personalgarage.service.main.transactions.application.services.interfaces.ITransactionService;
 import com.personalgarage.service.main.transactions.interfaces.dtos.TransactionDTO;
+import com.personalgarage.service.main.transactions.interfaces.messages.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -27,19 +28,28 @@ public class TransactionController {
 
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public TransactionDTO createTransaction(@RequestBody @Validated @NotNull TransactionDTO transactionDTO) {
-        return transactionService.createTransaction(transactionDTO);
+    public Long createTransaction(@RequestBody @Validated @NotNull TransactionDTO transactionDTO) {
+        CreateTransactionRequest request = new CreateTransactionRequest();
+        request.transactionDTO = transactionDTO;
+        CreateTransactionResponse response = transactionService.createTransaction(request);
+        return response.transactionId;
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionDTO getTransactionById(@PathVariable("id") @Validated @NotNull Long id) {
-        return transactionService.getTransactionById(id);
+        GetTransactionByIdRequest request = new GetTransactionByIdRequest();
+        request.transactionId = id;
+        GetTransactionByIdResponse response = transactionService.getTransactionById(request);
+        return response.transactionDTO;
     }
 
     @GetMapping(value = "/cars/{carId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<TransactionDTO> getAllTransactionsByCarId(@PathVariable("carId") @Validated @NotNull Long id) {
-        return transactionService.getAllTransactionsByCarId(id);
+        GetAllTransactionsByCarIdRequest request = new GetAllTransactionsByCarIdRequest();
+        request.carId = id;
+        GetAllTransactionsByCarIdResponse response = transactionService.getAllTransactionsByCarId(request);
+        return response.transactionDTOs;
     }
 }
