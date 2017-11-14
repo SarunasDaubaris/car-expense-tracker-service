@@ -13,4 +13,7 @@ public class UserCredentialsDTO {
 
     @JsonProperty("password")
     private String password;
+
+    @JsonProperty("repeatedPassword")
+    private String repeatedPassword;
 }

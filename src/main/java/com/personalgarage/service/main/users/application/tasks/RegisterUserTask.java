@@ -39,11 +39,17 @@ public class RegisterUserTask extends ServiceTask<RegisterUserRequest, RegisterU
         if (StringUtils.isBlank(userCredentialsDTO.getUsername())) {
             throw new ApplicationServiceException(UsersErrors.USERNAME_EMPTY);
         }
+        if (userRepository.existsByUsername(userCredentialsDTO.getUsername())) {
+            throw new ApplicationServiceException(UsersErrors.USERNAME_TAKEN);
+        }
         if (StringUtils.isBlank(userCredentialsDTO.getPassword())) {
             throw new ApplicationServiceException(UsersErrors.PASSWORD_EMPTY);
         }
-        if (userRepository.existsByUsername(userCredentialsDTO.getUsername())) {
-            throw new ApplicationServiceException(UsersErrors.USERNAME_TAKEN);
+        if (StringUtils.isBlank(userCredentialsDTO.getRepeatedPassword())) {
+            throw new ApplicationServiceException(UsersErrors.REPEATED_PASSWORD_EMPTY);
+        }
+        if (!StringUtils.equals(userCredentialsDTO.getPassword(), userCredentialsDTO.getRepeatedPassword())) {
+            throw new ApplicationServiceException(UsersErrors.PASSWORDS_DO_NOT_MATCH);
         }
 
         ApplicationUser user = new ApplicationUser();
