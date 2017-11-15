@@ -1,5 +1,6 @@
 package com.personalgarage.service.security.filters;
 
+import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,19 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams.*;
-
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
+    private final ApplicationSecurityConfigurerParams configurerParams;
+
+    public JWTAuthorizationFilter(AuthenticationManager authenticationManager, ApplicationSecurityConfigurerParams configurerParams) {
         super(authenticationManager);
+        this.configurerParams = configurerParams;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String header = request.getHeader(HEADER_STRING);
+        String header = request.getHeader(configurerParams.getHeader());
 
-        if (header == null || !header.startsWith(TOKEN_PREFIX)) {
+        if (header == null || !header.startsWith(configurerParams.getPrefix())) {
             chain.doFilter(request, response);
             return;
         }
@@ -43,11 +45,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) throws JwtException, IllegalArgumentException {
-        String token = request.getHeader(HEADER_STRING);
+        String token = request.getHeader(configurerParams.getHeader());
         if (token != null) {
             String user = Jwts.parser()
-                    .setSigningKey(SECRET.getBytes())
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                    .setSigningKey(configurerParams.getSecret().getBytes())
+                    .parseClaimsJws(token.replace(configurerParams.getPrefix(), ""))
                     .getBody()
                     .getSubject();
 

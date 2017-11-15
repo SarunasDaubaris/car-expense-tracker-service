@@ -2,6 +2,7 @@ package com.personalgarage.service.security.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
+import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,14 +19,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams.*;
-
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final ApplicationSecurityConfigurerParams configurerParams;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, ApplicationSecurityConfigurerParams configurerParams) {
         this.authenticationManager = authenticationManager;
+        this.configurerParams = configurerParams;
     }
 
     @Override
@@ -42,9 +43,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = Jwts.builder()
                 .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                .signWith(SignatureAlgorithm.HS512, SECRET.getBytes())
+                .setExpiration(new Date(System.currentTimeMillis() + configurerParams.getExpiration()))
+                .signWith(SignatureAlgorithm.HS512, configurerParams.getSecret().getBytes())
                 .compact();
-        response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        response.addHeader(configurerParams.getHeader(), configurerParams.getPrefix() + token);
     }
 }

@@ -19,12 +19,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
+    private final ApplicationSecurityConfigurerParams configurerParams;
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public ApplicationSecurityConfigurer(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        super();
+    public ApplicationSecurityConfigurer(ApplicationSecurityConfigurerParams configurerParams, UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.configurerParams = configurerParams;
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -35,8 +36,8 @@ public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter 
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), configurerParams))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), configurerParams))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
