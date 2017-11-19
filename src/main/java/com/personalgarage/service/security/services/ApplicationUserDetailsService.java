@@ -1,4 +1,4 @@
-package com.personalgarage.service.security.application;
+package com.personalgarage.service.security.services;
 
 import com.personalgarage.service.main.users.persistence.entities.ApplicationUser;
 import com.personalgarage.service.main.users.persistence.repositories.UserRepository;

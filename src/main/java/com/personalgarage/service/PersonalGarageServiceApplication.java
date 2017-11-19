@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {
@@ -20,7 +22,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         CarRepository.class,
         TransactionRepository.class
 })
-public class PersonalGarageServiceApplication {
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class PersonalGarageServiceApplication extends GlobalMethodSecurityConfiguration {
 
     public static void main(String[] args) {
         SpringApplication.run(PersonalGarageServiceApplication.class, args);

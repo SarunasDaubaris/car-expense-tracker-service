@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,7 @@ public class CarController {
         this.carService = carService;
     }
 
+    @PreAuthorize("@applicationUserAccessService.isAccessibleWithUserId(authentication, #carDTO.userId)")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Long createCar(@RequestBody @Validated @NotNull CarDTO carDTO) {
@@ -36,6 +39,7 @@ public class CarController {
         return createCarResponse.carId;
     }
 
+    @PreAuthorize("@carAccessService.isAccessibleWithCarId(authentication, #id)")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public CarDTO getCarById(@PathVariable("id") @Validated @NotNull Long id) {
@@ -45,6 +49,8 @@ public class CarController {
         return response.carDTO;
     }
 
+    @PreAuthorize("@applicationUserAccessService.isAccessibleWithUserId(authentication, #userId)")
+    @PostFilter("filterObject.userId == #userId")
     @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public List<CarDTO> getAllCarsByUserId(@PathVariable("userId") @Validated @NotNull Long userId) {
