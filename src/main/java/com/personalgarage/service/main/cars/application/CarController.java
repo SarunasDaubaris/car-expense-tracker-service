@@ -29,7 +29,7 @@ public class CarController {
         this.carService = carService;
     }
 
-    @PreAuthorize("@applicationUserAccessService.isAccessibleWithUserId(authentication, #carDTO.userId)")
+    @PreAuthorize("@userAccessService.isAccessibleWithUserId(authentication, #carDTO.userId)")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Long createCar(@RequestBody @Validated @NotNull CarDTO carDTO) {
@@ -49,7 +49,7 @@ public class CarController {
         return response.carDTO;
     }
 
-    @PreAuthorize("@applicationUserAccessService.isAccessibleWithUserId(authentication, #userId)")
+    @PreAuthorize("@userAccessService.isAccessibleWithUserId(authentication, #userId)")
     @PostFilter("filterObject.userId == #userId")
     @GetMapping(value = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)

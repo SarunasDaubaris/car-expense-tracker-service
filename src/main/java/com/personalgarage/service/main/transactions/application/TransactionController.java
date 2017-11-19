@@ -6,6 +6,8 @@ import com.personalgarage.service.main.transactions.interfaces.messages.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,7 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    @PreAuthorize("@userAccessService.isAccessibleWithUserId(authentication, #transactionDTO.userId) and @carAccessService.isAccessibleWithCarId(authentication, #transactionDTO.carId)")
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public Long createTransaction(@RequestBody @Validated @NotNull TransactionDTO transactionDTO) {
@@ -35,6 +38,7 @@ public class TransactionController {
         return response.transactionId;
     }
 
+    @PreAuthorize("@transactionAccessService.isAccessibleWithTransactionId(authentication, #id)")
     @GetMapping(value = "/{id}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public TransactionDTO getTransactionById(@PathVariable("id") @Validated @NotNull Long id) {
@@ -44,6 +48,8 @@ public class TransactionController {
         return response.transactionDTO;
     }
 
+    @PreAuthorize("@carAccessService.isAccessibleWithCarId(authentication, #id)")
+    @PostFilter("filterObject.carId == #id")
     @GetMapping(value = "/cars/{carId}", produces = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public List<TransactionDTO> getAllTransactionsByCarId(@PathVariable("carId") @Validated @NotNull Long id) {

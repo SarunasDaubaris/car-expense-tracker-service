@@ -1,4 +1,4 @@
-package com.personalgarage.service.main.cars.application.services;
+package com.personalgarage.service.security.services;
 
 import com.personalgarage.service.main.cars.persistence.entities.Car;
 import com.personalgarage.service.main.cars.persistence.repositories.CarRepository;
