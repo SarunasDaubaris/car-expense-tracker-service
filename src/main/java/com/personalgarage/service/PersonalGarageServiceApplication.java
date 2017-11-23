@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {
@@ -23,6 +24,7 @@ import org.springframework.security.config.annotation.method.configuration.Globa
         TransactionRepository.class
 })
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableTransactionManagement
 public class PersonalGarageServiceApplication extends GlobalMethodSecurityConfiguration {
 
     public static void main(String[] args) {
