@@ -32,17 +32,16 @@ public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
+        http.cors()
+                .and()
+                .csrf().disable()
+                .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), configurerParams))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), configurerParams))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .anonymous().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(new org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint("Unauthorized"));
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
