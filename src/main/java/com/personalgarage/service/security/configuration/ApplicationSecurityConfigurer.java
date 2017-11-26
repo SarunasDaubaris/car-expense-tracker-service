@@ -38,7 +38,11 @@ public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter 
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), configurerParams))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), configurerParams))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .anonymous().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint("Unauthorized"));
     }
 
     @Override
