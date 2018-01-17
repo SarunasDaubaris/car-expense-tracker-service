@@ -28,4 +28,12 @@ public class ApplicationUserDetailsService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), emptyList());
     }
+
+    public Long getUserIdByUsername(String username) throws UsernameNotFoundException {
+        ApplicationUser user = this.userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        return user.getId();
+    }
 }

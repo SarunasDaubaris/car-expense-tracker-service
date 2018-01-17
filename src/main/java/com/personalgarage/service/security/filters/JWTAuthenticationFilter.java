@@ -3,6 +3,7 @@ package com.personalgarage.service.security.filters;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalgarage.service.main.users.interfaces.dtos.UserCredentialsDTO;
 import com.personalgarage.service.security.configuration.ApplicationSecurityConfigurerParams;
+import com.personalgarage.service.security.services.ApplicationUserDetailsService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,10 +23,12 @@ import java.util.Date;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final ApplicationUserDetailsService userDetailsService;
     private final ApplicationSecurityConfigurerParams configurerParams;
 
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, ApplicationSecurityConfigurerParams configurerParams) {
+    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, ApplicationUserDetailsService userDetailsService, ApplicationSecurityConfigurerParams configurerParams) {
         this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
         this.configurerParams = configurerParams;
     }
 
@@ -41,11 +44,16 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
+        String username = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername();
+        Long userId = userDetailsService.getUserIdByUsername(username);
+
         String token = Jwts.builder()
-                .setSubject(((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername())
+                .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + configurerParams.getExpiration()))
                 .signWith(SignatureAlgorithm.HS512, configurerParams.getSecret().getBytes())
                 .compact();
         response.addHeader(configurerParams.getHeader(), configurerParams.getPrefix() + token);
+
+        response.getWriter().write(String.valueOf(userId));
     }
 }

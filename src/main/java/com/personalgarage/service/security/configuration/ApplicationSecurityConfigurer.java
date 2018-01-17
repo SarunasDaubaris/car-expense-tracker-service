@@ -2,6 +2,7 @@ package com.personalgarage.service.security.configuration;
 
 import com.personalgarage.service.security.filters.JWTAuthenticationFilter;
 import com.personalgarage.service.security.filters.JWTAuthorizationFilter;
+import com.personalgarage.service.security.services.ApplicationUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -10,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -20,11 +20,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     private final ApplicationSecurityConfigurerParams configurerParams;
-    private final UserDetailsService userDetailsService;
+    private final ApplicationUserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public ApplicationSecurityConfigurer(ApplicationSecurityConfigurerParams configurerParams, UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public ApplicationSecurityConfigurer(ApplicationSecurityConfigurerParams configurerParams, ApplicationUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.configurerParams = configurerParams;
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -39,7 +39,7 @@ public class ApplicationSecurityConfigurer extends WebSecurityConfigurerAdapter 
                 .antMatchers(HttpMethod.POST, "/users/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter(new JWTAuthenticationFilter(authenticationManager(), configurerParams))
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), userDetailsService, configurerParams))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), configurerParams))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
