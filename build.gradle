@@ -50,7 +50,7 @@ dependencies {
 }
 
 flyway {
-    url = 'jdbc:postgresql://localhost:5432/personal-garage'
+    url = 'jdbc:postgresql://localhost:5432/car-expense-tracker'
     user = 'postgres'
     password = 'admin'
     schemas = ['public']
