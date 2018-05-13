@@ -32,7 +32,9 @@ public class GetCarByIdTask extends ServiceTask<GetCarByIdRequest, GetCarByIdRes
         Validate.notNull(request.carId, "carId is null");
         Validate.isTrue(request.carId > 0, "carId is invalid");
 
-        Car car = Validate.notNull(carRepository.findOne(request.carId), "failed to find car #%s", request.carId);
+        Car car = Validate.notNull(carRepository.findById(request.carId).orElse(null),
+                "failed to find car #%s",
+                request.carId);
 
         response.carDTO = carServiceModelMapper.mapByClass(car, CarDTO.class);
         return response;

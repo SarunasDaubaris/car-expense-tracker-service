@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {
-        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
         org.springframework.boot.autoconfigure.session.SessionAutoConfiguration.class
 })
 @EnableJpaRepositories(basePackageClasses = {

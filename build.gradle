@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.8.RELEASE'
+        springBootVersion = '2.0.2.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -11,11 +11,12 @@ buildscript {
 }
 
 plugins {
-    id "org.flywaydb.flyway" version "4.1.2"
+    id "org.flywaydb.flyway" version "5.0.7"
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'personalgarageservice'
@@ -30,19 +31,19 @@ repositories {
 }
 
 dependencies {
+    runtime("org.springframework.boot:spring-boot-properties-migrator")
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.session:spring-session')
-    compile('com.fasterxml.jackson.core:jackson-databind:2.9.2')
-    compile('com.fasterxml.jackson.core:jackson-core:2.9.2')
-    compile('com.fasterxml.jackson.core:jackson-annotations:2.9.2')
-    compile("io.jsonwebtoken:jjwt:0.7.0")
-    compile("org.jadira.usertype:usertype.core:5.0.0.GA")
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.5')
+    compile('com.fasterxml.jackson.core:jackson-core:2.9.5')
+    compile('com.fasterxml.jackson.core:jackson-annotations:2.9.5')
+    compile("io.jsonwebtoken:jjwt:0.9.0")
+    compile("org.jadira.usertype:usertype.core:6.0.1.GA")
     compile('org.postgresql:postgresql:9.4.1211.jre7')
-    compile("org.flywaydb:flyway-core:4.1.2")
-    compile('ma.glasnost.orika:orika-core:1.5.1')
-    compile('org.projectlombok:lombok:1.16.12')
+    compile("org.flywaydb:flyway-core:5.0.7")
+    compile('ma.glasnost.orika:orika-core:1.5.2')
+    compile('org.projectlombok:lombok:1.16.20')
     compile("joda-time:joda-time:2.9.9")
     compile("org.apache.commons:commons-lang3:3.6")
     testCompile('org.springframework.boot:spring-boot-starter-test:1.5.8.RELEASE')
@@ -55,4 +56,5 @@ flyway {
     password = 'admin'
     schemas = ['public']
     locations = ["filesystem:$project.projectDir/src/main/resources/db/migration"]
+    baselineOnMigrate = true
 }

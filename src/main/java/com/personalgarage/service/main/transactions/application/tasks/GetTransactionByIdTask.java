@@ -32,7 +32,10 @@ public class GetTransactionByIdTask extends ServiceTask<GetTransactionByIdReques
         Validate.notNull(request.transactionId, "transactionId is null");
         Validate.isTrue(request.transactionId > 0, "transactionId is invalid");
 
-        Transaction transaction = Validate.notNull(transactionRepository.findOne(request.transactionId), "failed to find transaction #%s", request.transactionId);
+        Transaction transaction = Validate.notNull(
+                transactionRepository.findById(request.transactionId).orElse(null),
+                "failed to find transaction #%s",
+                request.transactionId);
 
         response.transactionDTO = transactionServiceModelMapper.mapByClass(transaction, TransactionDTO.class);
         return response;

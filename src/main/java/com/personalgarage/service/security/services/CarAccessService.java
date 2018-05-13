@@ -23,7 +23,7 @@ public class CarAccessService {
     public boolean isAccessibleWithCarId(Authentication authentication, Long carId) {
         if (authentication != null && carId != null) {
             ApplicationUser applicationUser = userRepository.findByUsername(authentication.getName());
-            Car car = carRepository.findOne(carId);
+            Car car = carRepository.findById(carId).orElse(null);
             return car != null && applicationUser != null && car.getUser().getId().equals(applicationUser.getId());
         }
         return false;

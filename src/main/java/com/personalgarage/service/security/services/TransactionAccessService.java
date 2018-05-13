@@ -23,7 +23,7 @@ public class TransactionAccessService {
     public boolean isAccessibleWithTransactionId(Authentication authentication, Long transactionId) {
         if (authentication != null && transactionId != null) {
             ApplicationUser applicationUser = userRepository.findByUsername(authentication.getName());
-            Transaction transaction = transactionRepository.findOne(transactionId);
+            Transaction transaction = transactionRepository.findById(transactionId).orElse(null);
             return applicationUser != null && transaction != null && transaction.getUser().getId().equals(applicationUser.getId());
         }
         return false;
