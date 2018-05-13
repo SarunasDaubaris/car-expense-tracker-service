@@ -6,6 +6,7 @@ import com.personalgarage.service.main.users.persistence.entities.ApplicationUse
 import com.personalgarage.service.main.users.persistence.entities.UserSetting;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.converter.builtin.PassThroughConverter;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +23,8 @@ public class UserServiceModelMapper {
     @PostConstruct
     private void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(org.joda.time.DateTime.class));
         mapperFactory.classMap(ApplicationUser.class, UserDTO.class)
-                .exclude("createdDate")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()

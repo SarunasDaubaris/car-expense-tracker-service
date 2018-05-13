@@ -1,8 +1,8 @@
 package com.personalgarage.service.main.cars.interfaces.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.personalgarage.service.common.components.JacksonJodaDateTimeDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.joda.ser.DateTimeSerializer;
 import com.personalgarage.service.main.cars.interfaces.constants.FuelTypeConst;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class CarDTO {
     private Long userId;
 
     @JsonProperty(value = "createdDate", access = JsonProperty.Access.READ_ONLY)
-    @JsonDeserialize(using = JacksonJodaDateTimeDeserializer.class)
+    @JsonSerialize(using = DateTimeSerializer.class)
     private DateTime createdDate;
 
     @JsonProperty("fuelType")

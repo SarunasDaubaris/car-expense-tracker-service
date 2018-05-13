@@ -4,6 +4,7 @@ import com.personalgarage.service.main.transactions.interfaces.dtos.TransactionD
 import com.personalgarage.service.main.transactions.persistence.entities.Transaction;
 import lombok.NoArgsConstructor;
 import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.converter.builtin.PassThroughConverter;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +21,10 @@ public class TransactionServiceModelMapper {
     @PostConstruct
     public void configure() {
         mapperFactory = new DefaultMapperFactory.Builder().build();
+        mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(org.joda.time.DateTime.class));
         mapperFactory.classMap(Transaction.class, TransactionDTO.class)
                 .field("user.id", "userId")
                 .field("car.id", "carId")
-                .exclude("createdDate")
                 .mapNulls(false)
                 .mapNullsInReverse(false)
                 .byDefault()
